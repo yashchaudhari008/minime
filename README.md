@@ -1,0 +1,2 @@
+# minime
+ Minimal Homepage
