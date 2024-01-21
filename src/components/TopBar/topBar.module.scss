@@ -1,3 +1,6 @@
+@import "/src/styles/mixins.scss";
+
 .topBar {
-    width: 100%;
+	@include font-poppins;
+	width: 100%;
 }

@@ -1,0 +1,8 @@
+@mixin font-poppins {
+	font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+@mixin font-inter {
+	font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
