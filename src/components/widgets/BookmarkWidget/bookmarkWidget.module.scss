@@ -1,0 +1,34 @@
+@import "/src/styles/variables.scss";
+@import "/src/styles/mixins.scss";
+
+.bookmarkWidget {
+	@include font-inter;
+	color: $primaryColor;
+	padding: 18px;
+	height: $widgetHeight;
+	width: 100%;
+
+	border-radius: 48px;
+	background-color: #3f3f3f;
+
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	cursor: pointer;
+
+	.favicon {
+		border-radius: 100%;
+		padding: 5px;
+		background-color: $primaryColor;
+		width: 52px;
+	}
+	.nameWrapper {
+		flex: 1;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		font-size: 24px;
+		font-weight: 800;
+	}
+}
