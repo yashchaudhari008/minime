@@ -1,0 +1,16 @@
+@import "/src/styles/variables.scss";
+.addNewWidget {
+	padding: 16px 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: 50%;
+	border: 6px solid $primaryColor;
+
+	cursor: pointer;
+	.icon {
+		color: $primaryColor;
+		font-size: 24px;
+	}
+}

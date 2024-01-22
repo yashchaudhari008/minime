@@ -24,6 +24,16 @@ body,
 	height: 100vh;
 }
 
+button {
+	padding: 0;
+	border: 0;
+	background: none;
+	box-shadow: none;
+}
+button:focus {
+	outline: 3px solid white;
+}
+
 * {
 	box-sizing: border-box;
 }

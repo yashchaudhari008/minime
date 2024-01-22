@@ -1,4 +1,15 @@
-.widgetHolder {
-	width: 100%;
-	flex: 1;
+.widgetHolderWrapper {
+	padding: 8px;
+	overflow: auto;
+	.widgetHolder {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-wrap: wrap;
+		.widget {
+			flex: 1;
+			min-width: 200px;
+			max-width: 350px;
+		}
+	}
 }
