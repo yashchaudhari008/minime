@@ -19,3 +19,13 @@ export const getWidgets = () => {
 		return [];
 	}
 };
+
+export const addWidget = (newWidgetData: WidgetData) => {
+	try {
+		const oldWidgetsData = getWidgets();
+		const newWidgetsData = [...oldWidgetsData, newWidgetData];
+		localStorage.setItem("widgetsData", JSON.stringify(newWidgetsData));
+	} catch (e) {
+		console.error("Failed while adding new widget:", e);
+	}
+};
