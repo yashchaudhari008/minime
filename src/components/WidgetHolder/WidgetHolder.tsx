@@ -26,7 +26,7 @@ const WidgetHolder = () => {
 		setShowAddNewWidgetModal(false);
 	};
 
-	const onModalSubmit = (e: FormEvent<HTMLFormElement>) => {
+	const onAddNewWidgetModalSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
 
@@ -63,7 +63,7 @@ const WidgetHolder = () => {
 			</div>
 
 			<Modal showModal={showAddNewWidgetModal} headerText="New Bookmark">
-				<form className={styles.modalContent} onSubmit={onModalSubmit}>
+				<form className={styles.modalContent} onSubmit={onAddNewWidgetModalSubmit}>
 					<div className={styles.formInputHolder}>
 						<InputField id="name" label="Name" />
 					</div>
