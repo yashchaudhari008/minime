@@ -1,3 +1,6 @@
+@import "/src/styles/mixins.scss";
+@import "/src/styles/variables.scss";
+
 .widgetHolderWrapper {
 	padding: 8px;
 	overflow: auto;
@@ -10,6 +13,45 @@
 			flex: 1;
 			min-width: 200px;
 			max-width: 350px;
+		}
+	}
+}
+
+.modalContent {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	.formInputHolder {
+		display: inline-flex;
+		align-items: end;
+
+		font-weight: 500;
+		label {
+			width: 90px;
+		}
+		input {
+			flex: 1;
+			height: 30px;
+			border-radius: 8px;
+			border: none;
+		}
+	}
+	.modalFooter {
+		width: 100%;
+		padding-top: 16px;
+		display: inline-flex;
+		justify-content: end;
+		gap: 10px;
+		// border-top: 2px solid black;
+		button {
+			@include font-inter;
+			font-weight: 800;
+			background-color: rgba(0, 0, 0, 0.1);
+			border: 2px solid $primaryColor;
+			color: white;
+			padding: 6px 12px;
+			border-radius: 6px;
 		}
 	}
 }
