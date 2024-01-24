@@ -9,8 +9,7 @@ import styles from "./widgetHolder.module.scss";
 
 const WidgetHolder = () => {
 	const [showAddNewWidgetModal, setShowAddNewWidgetModal] = useState(false);
-
-	const widgetsData = getWidgets();
+	const [widgetsData, setWidgetsData] = useState(getWidgets());
 
 	const getWidgetDOM = (widgetData: WidgetData, index: number) => {
 		switch (widgetData.type) {
@@ -39,13 +38,15 @@ const WidgetHolder = () => {
 			return;
 		}
 
-		addWidget({
+		const newWidgetData: WidgetData = {
 			widgetIndex: 0,
 			type: WidgetType.BookmarkWidget,
 			link: linkFromForm,
 			name: nameFromForm,
-		});
-		location.reload();
+		};
+
+		setWidgetsData((oldWidgetsData) => [...oldWidgetsData, newWidgetData]);
+		addWidget(newWidgetData);
 		closeAddNewWidgetModal();
 	};
 
