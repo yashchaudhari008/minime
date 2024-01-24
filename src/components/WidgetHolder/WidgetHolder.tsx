@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import { addWidget, getWidgets, WidgetType } from "../../utils/widgetsUtils";
 import type { WidgetData } from "../../utils/widgetsUtils";
 import Modal from "../shared/Modal/Modal";
