@@ -39,7 +39,6 @@ const WidgetHolder = () => {
 		}
 
 		const newWidgetData: WidgetData = {
-			widgetIndex: 0,
 			type: WidgetType.BookmarkWidget,
 			link: linkFromForm,
 			name: nameFromForm,

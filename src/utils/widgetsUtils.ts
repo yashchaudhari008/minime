@@ -3,7 +3,6 @@ export enum WidgetType {
 }
 
 export type WidgetData = {
-	widgetIndex: number;
 	type: WidgetType;
 	name?: string;
 	link: string;
