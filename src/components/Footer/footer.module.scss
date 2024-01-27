@@ -1,0 +1,41 @@
+@import "/src/styles/mixins.scss";
+@import "/src/styles/variables.scss";
+
+.footer {
+	width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding-right: 1.5rem;
+  p, a {
+	  @include font-poppins;
+    font-weight: bold;
+    color: $primaryColor;
+    text-decoration: none;
+  }
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.stick {
+  font-size: 1.5rem;
+}
+
+.github {
+  font-size: 1.4rem;
+  width: fit-content;
+  display: inline-flex;
+  align-items:  baseline;
+  gap: 4px;
+  margin-left: 2px;
+  svg {
+    fill: $primaryColor;
+    width: 1.5rem;
+  }
+}
