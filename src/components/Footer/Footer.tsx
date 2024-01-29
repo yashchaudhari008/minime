@@ -1,15 +1,17 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import styles from "./footer.module.scss";
-import GithubIcon from "./GithubIcon";
 
 const Footer = () => {
 	return (
 		<footer className={styles.footer}>
 			<p>
-				Made with ♥ by{" "}
+				Made with <FontAwesomeIcon icon={faHeart} /> by 
 				<a target="_blank" href="https://github.com/yashchaudhari008">
 					yashchaudhari008
-				</a>{" "}
-				&{" "}
+				</a> 
+				& 
 				<a
 					target="_blank"
 					href="https://github.com/yashchaudhari008/minime/graphs/contributors"
@@ -22,7 +24,8 @@ const Footer = () => {
 					className={styles.github}
 					href="https://github.com/yashchaudhari008/minime"
 				>
-					<GithubIcon /> Github Page
+					<FontAwesomeIcon className={styles.icon} icon={faGithub} />
+					Github Page
 				</a>
 			</p>
 		</footer>

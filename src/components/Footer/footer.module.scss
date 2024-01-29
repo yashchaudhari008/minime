@@ -9,10 +9,9 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  padding-right: 1.5rem;
+  padding-right: 24px;
   p, a {
-	  @include font-poppins;
-    font-weight: bold;
+    font-weight: 900;
     color: $primaryColor;
     text-decoration: none;
   }
@@ -24,18 +23,15 @@
 }
 
 .stick {
-  font-size: 1.5rem;
+  font-size: 16px;
 }
 
 .github {
-  font-size: 1.4rem;
-  width: fit-content;
-  display: inline-flex;
-  align-items:  baseline;
-  gap: 4px;
+  font-size: 23px;
   margin-left: 2px;
-  svg {
-    fill: $primaryColor;
-    width: 1.5rem;
-  }
+}
+
+.icon {
+  font-size: 24px;
+  margin-right: 4px;
 }
