@@ -11,6 +11,10 @@ export type WidgetData = {
 export const getWidgets = () => {
 	const localStorageWidgetsData = localStorage.getItem("widgetsData");
 	try {
+		if (!localStorageWidgetsData) {
+			console.log("No Widget Found!");
+			return [];
+		}
 		const widgetsData: WidgetData[] = JSON.parse(localStorageWidgetsData || "") || [];
 		return widgetsData;
 	} catch (e) {
