@@ -34,10 +34,7 @@ yarn dev
 
 Goto [ http://localhost:5173/minime/](http://localhost:5174/minime/) in browser to view the app.
 
-<!-- The page will reload if you make edits.\
-You will also see any lint errors in the console. -->
-
-### Recommended VS Code Extensions
+#### Recommended VS Code Extensions
 
 - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
@@ -47,11 +44,27 @@ You will also see any lint errors in the console. -->
 - You can find issues to work on [here](https://github.com/yashchaudhari008/minime/issues)
 - Found a bug? or have a good suggestion [create a fresh issue here](https://github.com/yashchaudhari008/minime/issues/new)
 
-### Guidelines
+#### 🔼 Pull Request Instructions
+
+1. Find/Create an [Issue](https://github.com/yashchaudhari008/minime/issues) to work on.
+2. `Fork` the repository.
+3. Create a new `feat-[feature-name]` / `bug-[name]` branch from the `main` branch.
+4. Make changes and test them.
+5. `Commit` your changes.
+6. Submit a PR with a meaningful header and link the issue in the PR description.
+7. Wait till PR gets reviewed ✔ .
+
+#### ✅ Guidelines
 
 - Make sure you get assigned to issue/bug before you start development.
 - Follow naming standards for issues/prs/commits.
 - Ask a follow up question if you unsure what to do!
+
+#### ❌ Please Note, Bad Pull Requests Are Not Accepted!
+
+- Changes other than stated issue/bug.
+- If your PR contains unnessecary indentation changes, it will be not accepted.
+- Do not make duplicate PRs.
 
 ## 💁‍♂️ Contributors
 
@@ -64,3 +77,7 @@ Made with [contributors-img](https://contrib.rocks).
 ## 📃 License
 
 Distributed under the MIT License. See [LICENSE](LICENSE.md) for more information.
+
+---
+
+<div align="center">THANKS ! Keep Contributing.✌</div>
