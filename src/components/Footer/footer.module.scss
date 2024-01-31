@@ -3,35 +3,36 @@
 
 .footer {
 	width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  padding-right: 24px;
-  p, a {
-    font-weight: 900;
-    color: $primaryColor;
-    text-decoration: none;
-  }
-  a {
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	padding-right: 24px;
+	p,
+	a {
+		font-weight: 900;
+		color: $primaryColor;
+		text-decoration: none;
+	}
+	a {
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 }
 
 .stick {
-  font-size: 16px;
+	font-size: 16px;
 }
 
 .github {
-  font-size: 23px;
-  margin-left: 2px;
+	font-size: 23px;
+	margin-left: 2px;
 }
 
 .icon {
-  font-size: 24px;
-  margin-right: 4px;
+	font-size: 24px;
+	margin-right: 4px;
 }

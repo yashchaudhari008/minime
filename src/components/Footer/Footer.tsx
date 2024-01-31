@@ -10,14 +10,14 @@ const Footer = () => {
 				Made with <FontAwesomeIcon icon={faHeart} /> by&nbsp;
 				<a target="_blank" href="https://github.com/yashchaudhari008">
 					yashchaudhari008&nbsp;
-				</a> 
+				</a>
 				&&nbsp;
 				<a
 					target="_blank"
 					href="https://github.com/yashchaudhari008/minime/graphs/contributors"
 				>
 					contributors
-				</a>  
+				</a>
 				<span className={styles.stick}> | </span>
 				<a
 					target="_blank"
@@ -25,8 +25,8 @@ const Footer = () => {
 					href="https://github.com/yashchaudhari008/minime"
 				>
 					<FontAwesomeIcon className={styles.icon} icon={faGithub} />
-					Github Page 
-				</a>  
+					Github Page
+				</a>
 			</p>
 		</footer>
 	);
