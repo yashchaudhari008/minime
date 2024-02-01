@@ -50,5 +50,7 @@ export enum WidgetType {
   export const updateWidgetOrder = (widgets: WidgetData[]) => {
 	const widgetIds = widgets.map((widget) => widget.id);
 	localStorage.setItem("widgetsOrder", JSON.stringify(widgetIds));
+	const sortedWidgets = widgets.sort((a, b) => widgetIds.indexOf(a.id) - widgetIds.indexOf(b.id));
+  	localStorage.setItem("widgetsData", JSON.stringify(sortedWidgets));
   };
   
