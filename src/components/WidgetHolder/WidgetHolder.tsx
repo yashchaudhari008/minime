@@ -8,123 +8,119 @@ import AddNewWidgetBtn from "../widgets/AddNewWidgetBtn/AddNewWidgetBtn";
 import BookmarkWidget from "../widgets/BookmarkWidget/BookmarkWidget";
 import styles from "./widgetHolder.module.scss";
 
-
-const getWidgetDOM = (widgetData: WidgetData, index: number) => {
-	switch (widgetData.type) {
-		case WidgetType.BookmarkWidget:
-			return <BookmarkWidget key={index} {...widgetData} />;
-	}
-};
-
-const DraggableWidget = ({
-	widgetData,
-	index,
-	moveWidget,
-}: {
-	widgetData: WidgetData;
-	index: number;
-	moveWidget: (fromIndex: number, toIndex: number) => void;
-}) => {
-	const [, ref] = useDrag({
-		type: "WIDGET",
-		item: { id: index, index },
-	});
-
-	const [, drop] = useDrop({
-		accept: "WIDGET",
-		hover: (draggedItem: { index: number }) => {
-			if (draggedItem.index !== index) {
-				moveWidget(draggedItem.index, index);
-				draggedItem.index = index;
-			}
-		},
-	});
-
-	return (
-		<div ref={(node) => ref(drop(node))} className={`${styles.widget}`}>
-			{getWidgetDOM(widgetData, index)}
-		</div>
-	);
-};
-
 const WidgetHolder = () => {
-	const [showAddNewWidgetModal, setShowAddNewWidgetModal] = useState(false);
-	const [widgetsData, setWidgetsData] = useState(getWidgets());
+  const [showAddNewWidgetModal, setShowAddNewWidgetModal] = useState(false);
+  const [widgetsData, setWidgetsData] = useState(getWidgets());
 
-	const openAddNewWidgetModal = () => {
-		setShowAddNewWidgetModal(true);
-	};
+  const getWidgetDOM = (widgetData: WidgetData, index: number) => {
+    switch (widgetData.type) {
+      case WidgetType.BookmarkWidget:
+        return <BookmarkWidget key={index} {...widgetData} />;
+      default:
+        return null;
+    }
+  };
 
-	const closeAddNewWidgetModal = () => {
-		setShowAddNewWidgetModal(false);
-	};
+  const DraggableWidget = ({
+    widgetData,
+    index,
+    moveWidget,
+  }: {
+    widgetData: WidgetData;
+    index: number;
+    moveWidget: (fromIndex: number, toIndex: number) => void;
+  }) => {
+    const [, ref] = useDrag({
+      type: "WIDGET",
+      item: { id: index, index },
+    });
 
-	const onAddNewWidgetModalSubmit = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		const formData = new FormData(e.currentTarget);
+    const [, drop] = useDrop({
+      accept: "WIDGET",
+      hover: (draggedItem: { index: number }) => {
+        if (draggedItem.index !== index) {
+          moveWidget(draggedItem.index, index);
+          draggedItem.index = index;
+        }
+      },
+    });
 
-		const nameFromForm = formData.get("name")?.toString();
-		const linkFromForm = formData.get("url")?.toString() || "";
+    return (
+      <div ref={(node) => ref(drop(node))} className={`${styles.widget}`}>
+        {getWidgetDOM(widgetData, index)}
+      </div>
+    );
+  };
 
-		if (!linkFromForm) {
-			alert("Link is Invalid!");
-			return;
-		}
+  const openAddNewWidgetModal = () => {
+    setShowAddNewWidgetModal(true);
+  };
 
-		const newWidgetData: WidgetData = {
-			type: WidgetType.BookmarkWidget,
-			link: linkFromForm,
-			name: nameFromForm,
-			id: ""
-		};
+  const closeAddNewWidgetModal = () => {
+    setShowAddNewWidgetModal(false);
+  };
 
-		setWidgetsData((oldWidgetsData) => [...oldWidgetsData, newWidgetData]);
-		addWidget(newWidgetData);
-		closeAddNewWidgetModal();
-	};
+  const onAddNewWidgetModalSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
 
-	const moveWidget = (fromIndex: number, toIndex: number) => {
-		const updatedWidgets = [...widgetsData];
-		const [movedWidget] = updatedWidgets.splice(fromIndex, 1);
-		updatedWidgets.splice(toIndex, 0, movedWidget);
-		setWidgetsData(updatedWidgets);
-		updateWidgetOrder(updatedWidgets);
-	};
+    const nameFromForm = formData.get("name")?.toString();
+    const linkFromForm = formData.get("url")?.toString() || "";
 
-	return (
-		<DndProvider backend={HTML5Backend}>
-			<div className={styles.widgetHolderWrapper}>
-				<div className={styles.widgetHolder}>
-					{widgetsData.map((widgetData, index) => (
-						<DraggableWidget
-							key={index}
-							widgetData={widgetData}
-							index={index}
-							moveWidget={moveWidget}
-						/>
-					))}
-					<AddNewWidgetBtn onClick={openAddNewWidgetModal} />
-				</div>
+    if (!linkFromForm) {
+      alert("Link is Invalid!");
+      return;
+    }
 
-				<Modal showModal={showAddNewWidgetModal} headerText="New Bookmark">
-					<form className={styles.modalContent} onSubmit={onAddNewWidgetModalSubmit}>
-						<div className={styles.formInputHolder}>
-							<InputField id="name" label="Name" />
-						</div>
-						<div className={styles.formInputHolder}>
-							<InputField id="url" label="Link" type="url" required />
-						</div>
-						<div className={styles.modalFooter}>
-							<button type="button" onClick={closeAddNewWidgetModal}>
-								Cancel
-							</button>
-							<button type="submit">Add</button>
-						</div>
-					</form>
-				</Modal>
-			</div>
-		</DndProvider>
-	);
+    const newWidgetData: WidgetData = {
+      type: WidgetType.BookmarkWidget,
+      link: linkFromForm,
+      name: nameFromForm,
+      id: "",
+    };
+
+    setWidgetsData((oldWidgetsData) => [...oldWidgetsData, newWidgetData]);
+    addWidget(newWidgetData);
+    closeAddNewWidgetModal();
+  };
+
+  const moveWidget = (fromIndex: number, toIndex: number) => {
+    const updatedWidgets = [...widgetsData];
+    const [movedWidget] = updatedWidgets.splice(fromIndex, 1);
+    updatedWidgets.splice(toIndex, 0, movedWidget);
+    setWidgetsData(updatedWidgets);
+    updateWidgetOrder(updatedWidgets);
+  };
+
+  return (
+    <DndProvider backend={HTML5Backend}>
+      <div className={styles.widgetHolderWrapper}>
+        <div className={styles.widgetHolder}>
+          {widgetsData.map((widgetData, index) => (
+            <DraggableWidget key={index} widgetData={widgetData} index={index} moveWidget={moveWidget} />
+          ))}
+          <AddNewWidgetBtn onClick={openAddNewWidgetModal} />
+        </div>
+
+        <Modal showModal={showAddNewWidgetModal} headerText="New Bookmark">
+          <form className={styles.modalContent} onSubmit={onAddNewWidgetModalSubmit}>
+            <div className={styles.formInputHolder}>
+              <InputField id="name" label="Name" />
+            </div>
+            <div className={styles.formInputHolder}>
+              <InputField id="url" label="Link" type="url" required />
+            </div>
+            <div className={styles.modalFooter}>
+              <button type="button" onClick={closeAddNewWidgetModal}>
+                Cancel
+              </button>
+              <button type="submit">Add</button>
+            </div>
+          </form>
+        </Modal>
+      </div>
+    </DndProvider>
+  );
 };
 
 export default WidgetHolder;
