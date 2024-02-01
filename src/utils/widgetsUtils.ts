@@ -14,6 +14,10 @@ export enum WidgetType {
 	const localStorageWidgetsOrder = localStorage.getItem("widgetsOrder");
   
 	try {
+    if (!localStorageWidgetsData) {
+			console.log("No Widget Found!");
+			return [];
+		}
 	  let widgetsData: WidgetData[] = JSON.parse(localStorageWidgetsData || "") || [];
 	  
 	  // If there is a stored order, sort the widgets accordingly
@@ -23,8 +27,8 @@ export enum WidgetType {
 		  return widgetOrder.indexOf(a.id) - widgetOrder.indexOf(b.id);
 		});
 	  }
-  
-	  return widgetsData;
+    
+		return widgetsData;
 	} catch (e) {
 	  console.error("Invalid Widgets Data:", e);
 	  return [];
