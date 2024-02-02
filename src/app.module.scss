@@ -1,5 +1,8 @@
 .app {
 	height: 100%;
 	display: flex;
+	gap: 16px;
+	padding: 32px;
+	padding-bottom: 0px;
 	flex-direction: column;
 }
