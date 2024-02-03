@@ -7,7 +7,7 @@ type BookmarkWidgetProps = WidgetData;
 
 const BookmarkWidget = ({ name, link }: BookmarkWidgetProps) => {
 	const onClickHandler = (e: SyntheticEvent<HTMLButtonElement>) => {
-		window.open(link, "_blank");
+		window.open(link, "_self");
 		e.currentTarget.blur();
 	};
 
