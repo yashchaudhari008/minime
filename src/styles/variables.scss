@@ -1,5 +1,28 @@
 // Colors
+$appBackground: #181818;
+$backdrop: rgba(0, 0, 0, 0.5);
 
-$primaryColor: #202124;
+$primaryColor: #9c988d;
+$secondaryColor: #1e1e1e;
 
+$appFooterTextColor: $primaryColor;
+$clockColor: $primaryColor;
+$selectionColor: $primaryColor;
+
+// Modal Colors
+$modalBackgroundColor: $secondaryColor;
+$modalHeaderColor: $primaryColor;
+$modalTextColor: $primaryColor;
+
+$modalButtonColor: $primaryColor;
+$modalButtonTextColor: $appBackground;
+
+// Widget Defaults
+$widgetBackground: $secondaryColor;
+$widgetTextColor: $primaryColor;
+$widgetImageHolderColor: $appBackground;
+$widgetBorderRadius: 20px;
 $widgetHeight: 88px;
+
+$addNewWidgetButtonColor: $secondaryColor;
+$addNewWidgetButtonIconColor: $primaryColor;

@@ -18,7 +18,7 @@ const Footer = () => {
 				>
 					contributors
 				</a>
-				<span className={styles.stick}> | </span>
+				<span> | </span>
 				<a
 					target="_blank"
 					className={styles.github}

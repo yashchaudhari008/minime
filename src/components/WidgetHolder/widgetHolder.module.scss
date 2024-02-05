@@ -8,7 +8,7 @@
 	.widgetHolder {
 		display: flex;
 		align-items: center;
-		gap: 10px;
+		gap: 16px;
 		flex-wrap: wrap;
 		.widget {
 			flex: 1;
@@ -21,7 +21,9 @@
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	color: $modalTextColor;
+	gap: 12px;
+	padding-top: 14px;
 	.formInputHolder {
 		display: inline-flex;
 		align-items: end;
@@ -39,18 +41,16 @@
 	}
 	.modalFooter {
 		width: 100%;
-		padding-top: 16px;
+		padding-top: 24px;
 		display: inline-flex;
 		justify-content: end;
 		gap: 10px;
-		// border-top: 2px solid black;
 		button {
 			@include font-inter;
 			font-weight: 800;
-			background-color: rgba(0, 0, 0, 0.1);
-			border: 2px solid $primaryColor;
-			color: white;
-			padding: 6px 12px;
+			background-color: $modalButtonColor;
+			color: $modalButtonTextColor;
+			padding: 8px 16px;
 			border-radius: 6px;
 		}
 	}
