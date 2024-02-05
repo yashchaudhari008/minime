@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@800&family=Ubuntu+Mono&display=swap");
+@import "/src/styles/variables.scss";
 @import "/src/styles/mixins.scss";
 
 :root {
@@ -6,8 +7,7 @@
 	line-height: 1.5;
 	font-weight: 400;
 
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #353535;
+	background-color: $appBackground;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -31,7 +31,7 @@ button {
 	box-shadow: none;
 }
 button:focus {
-	outline: 3px solid white;
+	outline: 3px solid $selectionColor;
 }
 
 * {

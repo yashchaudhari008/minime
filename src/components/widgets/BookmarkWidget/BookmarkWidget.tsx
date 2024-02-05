@@ -13,7 +13,9 @@ const BookmarkWidget = ({ name, link }: BookmarkWidgetProps) => {
 
 	return (
 		<button className={styles.bookmarkWidget} onClick={onClickHandler}>
-			<img src={getFaviconLink(link)} className={styles.favicon} />
+			<div className={styles.faviconHolder}>
+				<img src={getFaviconLink(link)} className={styles.favicon} />
+			</div>
 			<span className={styles.nameWrapper}>{name || link}</span>
 		</button>
 	);

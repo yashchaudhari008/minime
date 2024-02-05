@@ -4,10 +4,8 @@
 .clock {
 	@include font-poppins;
 
-	color: $primaryColor;
+	color: $clockColor;
 
-	-webkit-text-stroke-width: 4px;
-	-webkit-text-stroke-color: #3f3f3f;
 	font-size: 96px;
 	font-weight: 800;
 	width: 350px;
@@ -15,7 +13,6 @@
 	.meridiem {
 		@include font-inter;
 
-		-webkit-text-stroke: 0;
 		font-style: bold;
 		font-size: 32px;
 	}

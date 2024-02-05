@@ -3,32 +3,40 @@
 
 .bookmarkWidget {
 	@include font-inter;
-	color: $primaryColor;
-	padding: 18px;
+	color: $widgetTextColor;
+	padding: 0 20px;
 	height: $widgetHeight;
 	width: 100%;
 
-	border-radius: 48px;
-	background-color: #3f3f3f;
+	border-radius: $widgetBorderRadius;
+	background-color: $widgetBackground;
 
 	display: flex;
 	align-items: center;
 	gap: 10px;
 
 	cursor: pointer;
-
-	.favicon {
-		border-radius: 100%;
-		padding: 5px;
-		background-color: $primaryColor;
-		width: 52px;
+	.faviconHolder {
+		border-radius: 50%;
+		overflow: hidden;
+		display: grid;
+		place-items: center;
+		background-color: $widgetImageHolderColor;
+		.favicon {
+			--size: 52px;
+			padding: 12px;
+			width: var(--size);
+			height: var(--size);
+			filter: contrast(1.1);
+		}
 	}
+
 	.nameWrapper {
 		flex: 1;
 		text-overflow: ellipsis;
 		overflow: hidden;
 		white-space: nowrap;
-		font-size: 24px;
-		font-weight: 800;
+		font-size: 22px;
+		font-weight: 600;
 	}
 }
