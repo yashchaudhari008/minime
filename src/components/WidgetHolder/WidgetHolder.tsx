@@ -6,7 +6,7 @@ import {
 	getWidgets,
 	WidgetType,
 	WidgetData,
-	updateWidgetOrder,
+	updateWidgetsData,
 } from "../../utils/widgetsUtils";
 import Modal from "../shared/Modal/Modal";
 import InputField from "../shared/InputField/InputField";
@@ -36,23 +36,32 @@ const WidgetHolder = () => {
 		index: number;
 		moveWidget: (fromIndex: number, toIndex: number) => void;
 	}) => {
-		const [, ref] = useDrag({
+		const [{ isDragging }, ref] = useDrag({
 			type: "WIDGET",
 			item: { id: index, index },
+			collect: (monitor) => {
+				return {
+					isDragging: monitor.isDragging(),
+				};
+			},
 		});
 
 		const [, drop] = useDrop({
 			accept: "WIDGET",
 			hover: (draggedItem: { index: number }) => {
 				if (draggedItem.index !== index) {
-					moveWidget(draggedItem.index, index);
-					draggedItem.index = index;
+					console.log(index);
 				}
 			},
+			drop: (item: { index: number }) => moveWidget(item.index, index),
 		});
 
 		return (
-			<div ref={(node) => ref(drop(node))} className={`${styles.widget}`}>
+			<div
+				ref={(node) => ref(drop(node))}
+				style={{ opacity: isDragging ? 0.3 : 1 }}
+				className={`${styles.widget}`}
+			>
 				{getWidgetDOM(widgetData, index)}
 			</div>
 		);
@@ -82,7 +91,6 @@ const WidgetHolder = () => {
 			type: WidgetType.BookmarkWidget,
 			link: linkFromForm,
 			name: nameFromForm,
-			id: "",
 		};
 
 		setWidgetsData((oldWidgetsData) => [...oldWidgetsData, newWidgetData]);
@@ -95,7 +103,7 @@ const WidgetHolder = () => {
 		const [movedWidget] = updatedWidgets.splice(fromIndex, 1);
 		updatedWidgets.splice(toIndex, 0, movedWidget);
 		setWidgetsData(updatedWidgets);
-		updateWidgetOrder(updatedWidgets);
+		updateWidgetsData(updatedWidgets);
 	};
 
 	return (

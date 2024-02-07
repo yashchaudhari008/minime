@@ -6,27 +6,17 @@ export type WidgetData = {
 	type: WidgetType;
 	name?: string;
 	link: string;
-	id: string; // Add an id property to uniquely identify widgets
 };
 
 export const getWidgets = () => {
 	const localStorageWidgetsData = localStorage.getItem("widgetsData");
-	const localStorageWidgetsOrder = localStorage.getItem("widgetsOrder");
 
 	try {
 		if (!localStorageWidgetsData) {
 			console.log("No Widget Found!");
 			return [];
 		}
-		let widgetsData: WidgetData[] = JSON.parse(localStorageWidgetsData || "") || [];
-
-		// If there is a stored order, sort the widgets accordingly
-		if (localStorageWidgetsOrder) {
-			const widgetOrder: string[] = JSON.parse(localStorageWidgetsOrder);
-			widgetsData = widgetsData.sort((a, b) => {
-				return widgetOrder.indexOf(a.id) - widgetOrder.indexOf(b.id);
-			});
-		}
+		const widgetsData: WidgetData[] = JSON.parse(localStorageWidgetsData || "") || [];
 
 		return widgetsData;
 	} catch (e) {
@@ -38,22 +28,17 @@ export const getWidgets = () => {
 export const addWidget = (newWidgetData: WidgetData) => {
 	try {
 		const oldWidgetsData = getWidgets();
-		const newWidgetsData = [
-			...oldWidgetsData,
-			{ ...newWidgetData, id: Date.now().toString() },
-		];
+		const newWidgetsData = [...oldWidgetsData, newWidgetData];
 		localStorage.setItem("widgetsData", JSON.stringify(newWidgetsData));
-		updateWidgetOrder(newWidgetsData);
 	} catch (e) {
 		console.error("Failed while adding new widget:", e);
 	}
 };
 
-export const updateWidgetOrder = (widgets: WidgetData[]) => {
-	const widgetIds = widgets.map((widget) => widget.id);
-	localStorage.setItem("widgetsOrder", JSON.stringify(widgetIds));
-	const sortedWidgets = widgets.sort(
-		(a, b) => widgetIds.indexOf(a.id) - widgetIds.indexOf(b.id)
-	);
-	localStorage.setItem("widgetsData", JSON.stringify(sortedWidgets));
+export const updateWidgetsData = (newWidgetsData: WidgetData[]) => {
+	try {
+		localStorage.setItem("widgetsData", JSON.stringify(newWidgetsData));
+	} catch (e) {
+		console.error("Failed while updating widgets data:", e);
+	}
 };
