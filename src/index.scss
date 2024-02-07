@@ -30,8 +30,11 @@ button {
 	background: none;
 	box-shadow: none;
 }
-button:focus {
+button:focus-visible {
 	outline: 3px solid $selectionColor;
+}
+button:active {
+	outline: none; // to prevent outline while hovering
 }
 
 * {
