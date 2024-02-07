@@ -3,34 +3,27 @@ import { useDrag, useDrop } from "react-dnd";
 
 type DraggableWidgetProps = React.PropsWithChildren & {
 	index: number;
-	moveWidget: (fromIndex: number, toIndex: number) => void;
+	onDrop: (fromIndex: number, toIndex: number) => void;
 	className: string;
 };
 
 const DraggableWidget = ({
 	index,
-	moveWidget,
+	onDrop,
 	children,
 	className,
 }: DraggableWidgetProps) => {
 	const [{ isDragging }, ref] = useDrag({
 		type: "_WIDGET",
-		item: { id: index, index },
-		collect: (monitor) => {
-			return {
-				isDragging: monitor.isDragging(),
-			};
-		},
+		item: { index },
+		collect: (monitor) => ({
+			isDragging: monitor.isDragging(),
+		}),
 	});
 
 	const [, drop] = useDrop({
 		accept: "_WIDGET",
-		hover: (draggedItem: { index: number }) => {
-			if (draggedItem.index !== index) {
-				console.log(index);
-			}
-		},
-		drop: (droppedItem: { index: number }) => moveWidget(droppedItem.index, index),
+		drop: (droppedItem: { index: number }) => onDrop(droppedItem.index, index),
 	});
 
 	return (

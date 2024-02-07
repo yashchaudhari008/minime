@@ -75,7 +75,7 @@ const WidgetHolder = () => {
 						<DraggableWidget
 							key={index}
 							index={index}
-							moveWidget={moveWidget}
+							onDrop={moveWidget}
 							className={`${styles.widget}`}
 						>
 							{getWidgetDOM(widgetData, index)}
