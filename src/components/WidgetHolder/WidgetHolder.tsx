@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { useDrag, useDrop, DndProvider } from "react-dnd";
+import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import {
 	addWidget,
@@ -12,6 +12,7 @@ import Modal from "../shared/Modal/Modal";
 import InputField from "../shared/InputField/InputField";
 import AddNewWidgetBtn from "../widgets/AddNewWidgetBtn/AddNewWidgetBtn";
 import BookmarkWidget from "../widgets/BookmarkWidget/BookmarkWidget";
+import DraggableWidget from "./DraggableWidget";
 import styles from "./widgetHolder.module.scss";
 
 const WidgetHolder = () => {
@@ -25,46 +26,6 @@ const WidgetHolder = () => {
 			default:
 				return null;
 		}
-	};
-
-	const DraggableWidget = ({
-		widgetData,
-		index,
-		moveWidget,
-	}: {
-		widgetData: WidgetData;
-		index: number;
-		moveWidget: (fromIndex: number, toIndex: number) => void;
-	}) => {
-		const [{ isDragging }, ref] = useDrag({
-			type: "WIDGET",
-			item: { id: index, index },
-			collect: (monitor) => {
-				return {
-					isDragging: monitor.isDragging(),
-				};
-			},
-		});
-
-		const [, drop] = useDrop({
-			accept: "WIDGET",
-			hover: (draggedItem: { index: number }) => {
-				if (draggedItem.index !== index) {
-					console.log(index);
-				}
-			},
-			drop: (item: { index: number }) => moveWidget(item.index, index),
-		});
-
-		return (
-			<div
-				ref={(node) => ref(drop(node))}
-				style={{ opacity: isDragging ? 0.3 : 1 }}
-				className={`${styles.widget}`}
-			>
-				{getWidgetDOM(widgetData, index)}
-			</div>
-		);
 	};
 
 	const openAddNewWidgetModal = () => {
@@ -107,38 +68,40 @@ const WidgetHolder = () => {
 	};
 
 	return (
-		<DndProvider backend={HTML5Backend}>
-			<div className={styles.widgetHolderWrapper}>
-				<div className={styles.widgetHolder}>
+		<div className={styles.widgetHolderWrapper}>
+			<div className={styles.widgetHolder}>
+				<DndProvider backend={HTML5Backend}>
 					{widgetsData.map((widgetData, index) => (
 						<DraggableWidget
 							key={index}
-							widgetData={widgetData}
 							index={index}
 							moveWidget={moveWidget}
-						/>
+							className={`${styles.widget}`}
+						>
+							{getWidgetDOM(widgetData, index)}
+						</DraggableWidget>
 					))}
-					<AddNewWidgetBtn onClick={openAddNewWidgetModal} />
-				</div>
-
-				<Modal showModal={showAddNewWidgetModal} headerText="New Bookmark">
-					<form className={styles.modalContent} onSubmit={onAddNewWidgetModalSubmit}>
-						<div className={styles.formInputHolder}>
-							<InputField id="name" label="Name" />
-						</div>
-						<div className={styles.formInputHolder}>
-							<InputField id="url" label="Link" type="url" required />
-						</div>
-						<div className={styles.modalFooter}>
-							<button type="button" onClick={closeAddNewWidgetModal}>
-								Cancel
-							</button>
-							<button type="submit">Add</button>
-						</div>
-					</form>
-				</Modal>
+				</DndProvider>
+				<AddNewWidgetBtn onClick={openAddNewWidgetModal} />
 			</div>
-		</DndProvider>
+
+			<Modal showModal={showAddNewWidgetModal} headerText="New Bookmark">
+				<form className={styles.modalContent} onSubmit={onAddNewWidgetModalSubmit}>
+					<div className={styles.formInputHolder}>
+						<InputField id="name" label="Name" />
+					</div>
+					<div className={styles.formInputHolder}>
+						<InputField id="url" label="Link" type="url" required />
+					</div>
+					<div className={styles.modalFooter}>
+						<button type="button" onClick={closeAddNewWidgetModal}>
+							Cancel
+						</button>
+						<button type="submit">Add</button>
+					</div>
+				</form>
+			</Modal>
+		</div>
 	);
 };
 
