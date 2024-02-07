@@ -1,10 +1,18 @@
 import { FormEvent, useState } from "react";
-import { addWidget, getWidgets, WidgetType } from "../../utils/widgetsUtils";
-import type { WidgetData } from "../../utils/widgetsUtils";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import {
+	addWidget,
+	getWidgets,
+	WidgetType,
+	WidgetData,
+	updateWidgetsData,
+} from "../../utils/widgetsUtils";
 import Modal from "../shared/Modal/Modal";
 import InputField from "../shared/InputField/InputField";
 import AddNewWidgetBtn from "../widgets/AddNewWidgetBtn/AddNewWidgetBtn";
 import BookmarkWidget from "../widgets/BookmarkWidget/BookmarkWidget";
+import DraggableWidget from "./DraggableWidget";
 import styles from "./widgetHolder.module.scss";
 
 const WidgetHolder = () => {
@@ -15,6 +23,8 @@ const WidgetHolder = () => {
 		switch (widgetData.type) {
 			case WidgetType.BookmarkWidget:
 				return <BookmarkWidget key={index} {...widgetData} />;
+			default:
+				return null;
 		}
 	};
 
@@ -49,16 +59,29 @@ const WidgetHolder = () => {
 		closeAddNewWidgetModal();
 	};
 
+	const moveWidget = (fromIndex: number, toIndex: number) => {
+		const updatedWidgets = [...widgetsData];
+		const [movedWidget] = updatedWidgets.splice(fromIndex, 1);
+		updatedWidgets.splice(toIndex, 0, movedWidget);
+		setWidgetsData(updatedWidgets);
+		updateWidgetsData(updatedWidgets);
+	};
+
 	return (
 		<div className={styles.widgetHolderWrapper}>
 			<div className={styles.widgetHolder}>
-				{widgetsData.map((widgetData, index) => {
-					return (
-						<div key={index} className={styles.widget}>
+				<DndProvider backend={HTML5Backend}>
+					{widgetsData.map((widgetData, index) => (
+						<DraggableWidget
+							key={index}
+							index={index}
+							onDrop={moveWidget}
+							className={`${styles.widget}`}
+						>
 							{getWidgetDOM(widgetData, index)}
-						</div>
-					);
-				})}
+						</DraggableWidget>
+					))}
+				</DndProvider>
 				<AddNewWidgetBtn onClick={openAddNewWidgetModal} />
 			</div>
 
