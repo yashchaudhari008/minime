@@ -1,42 +1,87 @@
 @import "/src/styles/variables.scss";
 @import "/src/styles/mixins.scss";
 
-.bookmarkWidget {
-	@include font-inter;
-	color: $widgetTextColor;
-	padding: 0 20px;
-	height: $widgetHeight;
-	width: 100%;
+.bookmarkWidgetContainer {
+	position: relative;
 
-	border-radius: $widgetBorderRadius;
-	background-color: $widgetBackground;
+	.bookmarkWidget {
+		@include font-inter;
+		color: $widgetTextColor;
+		padding: 0 20px;
+		height: $widgetHeight;
+		width: 100%;
 
-	display: flex;
-	align-items: center;
-	gap: 10px;
+		border-radius: $widgetBorderRadius;
+		background-color: $widgetBackground;
 
-	cursor: pointer;
-	.faviconHolder {
-		border-radius: 50%;
-		overflow: hidden;
-		display: grid;
-		place-items: center;
-		background-color: $widgetImageHolderColor;
-		.favicon {
-			--size: 52px;
-			padding: 12px;
-			width: var(--size);
-			height: var(--size);
-			filter: contrast(1.1);
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		cursor: pointer;
+		.faviconHolder {
+			border-radius: 50%;
+			overflow: hidden;
+			display: grid;
+			place-items: center;
+			background-color: $widgetImageHolderColor;
+			.favicon {
+				--size: 52px;
+				padding: 12px;
+				width: var(--size);
+				height: var(--size);
+				filter: contrast(1.1);
+			}
+		}
+
+		.nameWrapper {
+			flex: 1;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			font-size: 22px;
+			font-weight: 600;
+		}
+
+		.editBookmarkWidget {
+			padding: 10px;
+			cursor: pointer;
 		}
 	}
 
-	.nameWrapper {
-		flex: 1;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
-		font-size: 22px;
-		font-weight: 600;
+	.moreOptions {
+		position: absolute;
+		border: 1px solid $widgetTextColor;
+		color: $widgetTextColor;
+		background-color: $widgetBackground;
+		cursor: pointer;
+		border-radius: 16px;
+		width: 146px;
+		height: 111px;
+		top: 25px;
+		left: 290px;
+
+		:first-child {
+			border-bottom: 1px solid $widgetTextColor;
+		}
+
+		.moreOptionButton {
+			display: flex;
+			justify-content: space-around;
+			gap: 10px;
+			padding: 10px 12px 12px 20px;
+
+			.icon {
+				padding: 3px;
+				width: 20px;
+				margin-top: 5px;
+				// Added to remove the border below icon
+				border: none;
+			}
+			.name {
+				padding: 3px;
+				width: 100%;
+			}
+		}
 	}
 }
