@@ -22,7 +22,14 @@ const WidgetHolder = () => {
 	const getWidgetDOM = (widgetData: WidgetData, index: number) => {
 		switch (widgetData.type) {
 			case WidgetType.BookmarkWidget:
-				return <BookmarkWidget key={index} {...widgetData} />;
+				return (
+					<BookmarkWidget
+						key={index}
+						widgetsData={widgetsData}
+						setWidgetsData={setWidgetsData}
+						{...widgetData}
+					/>
+				);
 			default:
 				return null;
 		}
@@ -49,6 +56,8 @@ const WidgetHolder = () => {
 		}
 
 		const newWidgetData: WidgetData = {
+			// TODO: Another way to add id to avoid Math.random()
+			id: Math.floor(Math.random() * 98 + 1),
 			type: WidgetType.BookmarkWidget,
 			link: linkFromForm,
 			name: nameFromForm,

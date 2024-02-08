@@ -1,13 +1,23 @@
 import { SyntheticEvent, useState } from "react";
-import type { WidgetData } from "../../../utils/widgetsUtils";
+import { type WidgetData, deleteWidget } from "../../../utils/widgetsUtils";
 import { getFaviconLink } from "./bookmarkUtils";
 import { faPen, faXmark, faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./bookmarkWidget.module.scss";
 
-type BookmarkWidgetProps = WidgetData;
+type BookmarkWidgetProps = {
+	widgetsData: Array<WidgetData>;
+	setWidgetData: (widgetsData: WidgetData[]) => void;
+};
 
-const BookmarkWidget = ({ name, link }: BookmarkWidgetProps) => {
+// TODO: Fix type error 
+const BookmarkWidget = ({
+	widgetsData,
+	setWidgetsData,
+	id,
+	name,
+	link,
+}: BookmarkWidgetProps & WidgetData) => {
 	const [showModal, setShowModal] = useState(false);
 	const onClickHandler = (e: SyntheticEvent<HTMLButtonElement>) => {
 		window.open(link, "_self");
@@ -23,6 +33,14 @@ const BookmarkWidget = ({ name, link }: BookmarkWidgetProps) => {
 		setShowModal(false);
 	};
 
+	const handleDeleteWidget = (id: number) => {
+		deleteWidget(id);
+
+		const updatedWidgetData = widgetsData.filter((item: WidgetData) => item.id !== id);
+
+		setWidgetsData(updatedWidgetData);
+	};
+
 	const moreOptionsDom = () => {
 		return (
 			// TODO: try another logic to close the modal instead of onMouseLeave
@@ -34,10 +52,7 @@ const BookmarkWidget = ({ name, link }: BookmarkWidgetProps) => {
 					<FontAwesomeIcon icon={faPen} className={styles.icon} />
 					<span className={styles.name}>Edit</span>
 				</div>
-				<div
-					className={styles.moreOptionButton}
-					onClick={() => console.log("Delete Working")}
-				>
+				<div className={styles.moreOptionButton} onClick={() => handleDeleteWidget(id)}>
 					<FontAwesomeIcon icon={faXmark} className={styles.icon} />
 					<span className={styles.name}>Delete</span>
 				</div>
