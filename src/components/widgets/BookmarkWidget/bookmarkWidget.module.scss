@@ -60,6 +60,8 @@
 		height: 111px;
 		top: 25px;
 		left: 290px;
+		// Added to keep the more options modal above the bookmark
+		z-index: 1;
 
 		:first-child {
 			border-bottom: 1px solid $widgetTextColor;

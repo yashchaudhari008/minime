@@ -13,6 +13,8 @@
 
 	display: grid;
 	place-items: center;
+	// Added to keep the Modal From above the Bookmark
+	z-index: 1;
 	.modal {
 		width: 400px;
 

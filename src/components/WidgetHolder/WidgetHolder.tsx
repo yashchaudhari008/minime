@@ -26,8 +26,8 @@ const WidgetHolder = () => {
 						key={index}
 						index={index}
 						widgetsData={widgetsData}
-						setWidgetsData={() => setWidgetsData}
-						{...widgetData}
+						setWidgetsData={setWidgetsData}
+						widget={widgetData}
 					/>
 				);
 			default:
@@ -43,13 +43,7 @@ const WidgetHolder = () => {
 		setShowAddNewWidgetModal(false);
 	};
 
-	const onAddNewWidgetModalSubmit = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		const formData = new FormData(e.currentTarget);
-
-		const nameFromForm = formData.get("name")?.toString();
-		const linkFromForm = formData.get("url")?.toString() || "";
-
+	const onAddNewWidgetModalSubmit = (nameFromForm: string, linkFromForm: string) => {
 		if (!linkFromForm) {
 			alert("Link is Invalid!");
 			return;
@@ -93,12 +87,14 @@ const WidgetHolder = () => {
 				</DndProvider>
 				<AddNewWidgetBtn onClick={openAddNewWidgetModal} />
 			</div>
-			{/* TODO: Fix this below error */}
-			<WidgetForm
-				showModal={showAddNewWidgetModal}
-				onFormSubmit={onAddNewWidgetModalSubmit}
-				onCancelClick={closeAddNewWidgetModal}
-			/>
+			{/* Conditional Rendering to avoid the unnecessary render of below component */}
+			{showAddNewWidgetModal && (
+				<WidgetForm
+					showModal={showAddNewWidgetModal}
+					onFormSubmit={onAddNewWidgetModalSubmit}
+					onCancelClick={closeAddNewWidgetModal}
+				/>
+			)}
 		</div>
 	);
 };
