@@ -1,19 +1,24 @@
-import { SyntheticEvent, useState } from "react";
-import { type WidgetData, deleteWidget } from "../../../utils/widgetsUtils";
+import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
+import {
+	type WidgetData,
+	deleteWidget,
+	updateWidgetsData,
+} from "../../../utils/widgetsUtils";
 import { getFaviconLink } from "./bookmarkUtils";
 import { faPen, faXmark, faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./bookmarkWidget.module.scss";
 
 type BookmarkWidgetProps = {
+	index: number;
 	widgetsData: Array<WidgetData>;
-	setWidgetData: (widgetsData: WidgetData[]) => void;
+	setWidgetsData: () => void;
 };
 
-// TODO: Fix type error 
 const BookmarkWidget = ({
 	widgetsData,
 	setWidgetsData,
+	index,
 	id,
 	name,
 	link,
@@ -34,11 +39,16 @@ const BookmarkWidget = ({
 	};
 
 	const handleDeleteWidget = (id: number) => {
-		deleteWidget(id);
+		// deleteWidget(id);
 
-		const updatedWidgetData = widgetsData.filter((item: WidgetData) => item.id !== id);
+		// const updatedWidgetData = widgetsData.filter((item: WidgetData) => item.id !== id);
 
-		setWidgetsData(updatedWidgetData);
+		// setWidgetsData(updatedWidgetData);
+		// const updatedWidgets = [...widgetsData];
+		const updatedWidgets = widgetsData.filter((_, ind) => index !== ind);
+		// updatedWidgets.splice(toIndex, 0, movedWidget);
+		setWidgetsData(updatedWidgets);
+		updateWidgetsData(updatedWidgets);
 	};
 
 	const moreOptionsDom = () => {
@@ -67,9 +77,9 @@ const BookmarkWidget = ({
 					<img src={getFaviconLink(link)} className={styles.favicon} />
 				</div>
 				<span className={styles.nameWrapper}>{name || link}</span>
-				<button className={styles.editBookmarkWidget} onClick={(e) => openMenu(e)}>
+				<div className={styles.editBookmarkWidget} onClick={(e) => openMenu(e)}>
 					<FontAwesomeIcon icon={faEllipsisVertical} size="xl" />
-				</button>
+				</div>
 			</button>
 			{showModal && moreOptionsDom()}
 		</div>

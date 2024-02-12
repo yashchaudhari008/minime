@@ -1,0 +1,117 @@
+@import "/src/styles/mixins.scss";
+@import "/src/styles/variables.scss";
+
+.modalContent {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	color: $modalTextColor;
+	gap: 12px;
+	padding-top: 14px;
+	.formInputHolder {
+		display: inline-flex;
+		align-items: end;
+
+		font-weight: 500;
+		label {
+			width: 90px;
+		}
+		input {
+			flex: 1;
+			height: 30px;
+			border-radius: 8px;
+			border: none;
+		}
+	}
+	.modalFooter {
+		width: 100%;
+		padding-top: 24px;
+		display: inline-flex;
+		justify-content: end;
+		gap: 10px;
+		button {
+			@include font-inter;
+			font-weight: 800;
+			background-color: $modalButtonColor;
+			color: $modalButtonTextColor;
+			padding: 8px 16px;
+			border-radius: 6px;
+		}
+	}
+}
+.modalContent {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	color: $modalTextColor;
+	gap: 12px;
+	padding-top: 14px;
+	.formInputHolder {
+		display: inline-flex;
+		align-items: end;
+
+		font-weight: 500;
+		label {
+			width: 90px;
+		}
+		input {
+			flex: 1;
+			height: 30px;
+			border-radius: 8px;
+			border: none;
+		}
+	}
+	.modalFooter {
+		width: 100%;
+		padding-top: 24px;
+		display: inline-flex;
+		justify-content: end;
+		gap: 10px;
+		button {
+			@include font-inter;
+			font-weight: 800;
+			background-color: $modalButtonColor;
+			color: $modalButtonTextColor;
+			padding: 8px 16px;
+			border-radius: 6px;
+		}
+	}
+}
+.modalContent {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	color: $modalTextColor;
+	gap: 12px;
+	padding-top: 14px;
+	.formInputHolder {
+		display: inline-flex;
+		align-items: end;
+
+		font-weight: 500;
+		label {
+			width: 90px;
+		}
+		input {
+			flex: 1;
+			height: 30px;
+			border-radius: 8px;
+			border: none;
+		}
+	}
+	.modalFooter {
+		width: 100%;
+		padding-top: 24px;
+		display: inline-flex;
+		justify-content: end;
+		gap: 10px;
+		button {
+			@include font-inter;
+			font-weight: 800;
+			background-color: $modalButtonColor;
+			color: $modalButtonTextColor;
+			padding: 8px 16px;
+			border-radius: 6px;
+		}
+	}
+}

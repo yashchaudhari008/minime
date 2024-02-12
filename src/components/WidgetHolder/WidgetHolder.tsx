@@ -8,8 +8,7 @@ import {
 	WidgetData,
 	updateWidgetsData,
 } from "../../utils/widgetsUtils";
-import Modal from "../shared/Modal/Modal";
-import InputField from "../shared/InputField/InputField";
+import WidgetForm from "../shared/WidgetForm/WidgetForm";
 import AddNewWidgetBtn from "../widgets/AddNewWidgetBtn/AddNewWidgetBtn";
 import BookmarkWidget from "../widgets/BookmarkWidget/BookmarkWidget";
 import DraggableWidget from "./DraggableWidget";
@@ -25,8 +24,9 @@ const WidgetHolder = () => {
 				return (
 					<BookmarkWidget
 						key={index}
+						index={index}
 						widgetsData={widgetsData}
-						setWidgetsData={setWidgetsData}
+						setWidgetsData={() => setWidgetsData}
 						{...widgetData}
 					/>
 				);
@@ -93,23 +93,12 @@ const WidgetHolder = () => {
 				</DndProvider>
 				<AddNewWidgetBtn onClick={openAddNewWidgetModal} />
 			</div>
-
-			<Modal showModal={showAddNewWidgetModal} headerText="New Bookmark">
-				<form className={styles.modalContent} onSubmit={onAddNewWidgetModalSubmit}>
-					<div className={styles.formInputHolder}>
-						<InputField id="name" label="Name" />
-					</div>
-					<div className={styles.formInputHolder}>
-						<InputField id="url" label="Link" type="url" required />
-					</div>
-					<div className={styles.modalFooter}>
-						<button type="button" onClick={closeAddNewWidgetModal}>
-							Cancel
-						</button>
-						<button type="submit">Add</button>
-					</div>
-				</form>
-			</Modal>
+			{/* TODO: Fix this below error */}
+			<WidgetForm
+				showModal={showAddNewWidgetModal}
+				onFormSubmit={onAddNewWidgetModalSubmit}
+				onCancelClick={closeAddNewWidgetModal}
+			/>
 		</div>
 	);
 };

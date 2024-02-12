@@ -43,15 +43,3 @@ export const updateWidgetsData = (newWidgetsData: WidgetData[]) => {
 		console.error("Failed while updating widgets data:", e);
 	}
 };
-
-export const deleteWidget = (id: number) => {
-	const localStorageWidgetsData = localStorage.getItem("widgetsData");
-	try {
-		const widgets: WidgetData[] = JSON.parse(localStorageWidgetsData || "") || [];
-		const newWidgetsData: WidgetData[] = widgets.filter((widget) => widget.id !== id);
-		localStorage.clear();
-		localStorage.setItem("widgetsData", JSON.stringify(newWidgetsData));
-	} catch (e) {
-		console.log("Failed to delete a widget", e);
-	}
-};
