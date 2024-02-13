@@ -87,7 +87,6 @@ const WidgetHolder = () => {
 				</DndProvider>
 				<AddNewWidgetBtn onClick={openAddNewWidgetModal} />
 			</div>
-			{/* Conditional Rendering to avoid the unnecessary render of below component */}
 			{showAddNewWidgetModal && (
 				<WidgetForm
 					showModal={showAddNewWidgetModal}

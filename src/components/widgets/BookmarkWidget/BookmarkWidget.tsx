@@ -83,17 +83,19 @@ const BookmarkWidget = ({
 	};
 
 	return (
-		<div className={styles.bookmarkWidgetContainer}>
-			<button className={styles.bookmarkWidget} onClick={onClickHandler}>
-				<div className={styles.faviconHolder}>
-					<img src={getFaviconLink(link)} className={styles.favicon} />
-				</div>
-				<span className={styles.nameWrapper}>{name || link}</span>
-				<div className={styles.editBookmarkWidget} onClick={(e) => openMenu(e)}>
-					<FontAwesomeIcon icon={faEllipsisVertical} size="xl" />
-				</div>
-			</button>
-			{showModal && moreOptionsDom()}
+		<>
+			<div className={styles.bookmarkWidgetContainer}>
+				<button className={styles.bookmarkWidget} onClick={onClickHandler}>
+					<div className={styles.faviconHolder}>
+						<img src={getFaviconLink(link)} className={styles.favicon} />
+					</div>
+					<span className={styles.nameWrapper}>{name || link}</span>
+					<div className={styles.editBookmarkWidget} onClick={(e) => openMenu(e)}>
+						<FontAwesomeIcon icon={faEllipsisVertical} size="xl" />
+					</div>
+				</button>
+				{showModal && moreOptionsDom()}
+			</div>
 			{/* Conditional Rendering to avoid the unnecessary render of below component */}
 			{showFormModal && (
 				<WidgetForm
@@ -104,7 +106,7 @@ const BookmarkWidget = ({
 					onFormSubmit={handleEditWidget}
 				/>
 			)}
-		</div>
+		</>
 	);
 };
 
