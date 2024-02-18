@@ -4,6 +4,7 @@ import InputField from "../InputField/InputField";
 import styles from "./WidgetForm.module.scss";
 
 type WidgetFormProps = {
+	isEditMode?: boolean;
 	showModal: boolean;
 	currentName?: string;
 	currentLink?: string;
@@ -12,6 +13,7 @@ type WidgetFormProps = {
 };
 
 const WidgetForm = ({
+	isEditMode = false,
 	showModal,
 	currentName = "",
 	currentLink = "",
@@ -31,8 +33,6 @@ const WidgetForm = ({
 		setLink("");
 	};
 
-	// OR because name is optional field
-	const isEditMode = name || link;
 	const headerText = isEditMode ? "Update" : "New";
 	const buttonText = isEditMode ? "Save" : "Add";
 
