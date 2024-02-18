@@ -1,4 +1,4 @@
-# Minime
+# <img align="center" width="50" style="border-radius:1rem" height="50" src="/public/vite.svg" /> Minime
 
 [![Github Pages](https://github.com/yashchaudhari008/minime/actions/workflows/deploy.yml/badge.svg)](https://github.com/yashchaudhari008/minime/actions/workflows/deploy.yml)
 ![Repo Size](https://img.shields.io/github/repo-size/yashchaudhari008/minime)
