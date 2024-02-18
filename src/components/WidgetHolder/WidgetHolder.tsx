@@ -27,7 +27,7 @@ const WidgetHolder = () => {
 						index={index}
 						widgetsData={widgetsData}
 						setWidgetsData={setWidgetsData}
-						widget={widgetData}
+						{...widgetData}
 					/>
 				);
 			default:
