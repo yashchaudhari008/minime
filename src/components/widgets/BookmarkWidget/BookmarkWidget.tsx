@@ -1,28 +1,32 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useRef, useState } from "react";
 import { type WidgetData, updateWidgetsData } from "../../../utils/widgetsUtils";
 import { getFaviconLink } from "./bookmarkUtils";
-import { faPen, faXmark, faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "./bookmarkWidget.module.scss";
+import useOutsideClick from "../../../Hooks/useOutsideClick";
 import WidgetForm from "../../shared/WidgetForm/WidgetForm";
+import MoreOptions from "../../MoreOptions/MoreOptions";
+import styles from "./bookmarkWidget.module.scss";
 
 type BookmarkWidgetProps = {
 	index: number;
 	widgetsData: Array<WidgetData>;
 	setWidgetsData: (widgetsData: Array<WidgetData>) => void;
-	widget: WidgetData;
 };
 
 const BookmarkWidget = ({
 	widgetsData,
 	setWidgetsData,
 	index,
-	widget,
-}: BookmarkWidgetProps) => {
-	const { name, link } = widget;
-
+	type,
+	link,
+	name,
+}: BookmarkWidgetProps & WidgetData) => {
 	const [showModal, setShowModal] = useState(false);
 	const [showFormModal, setShowFormModal] = useState(false);
+
+	const containerRef = useRef<HTMLDivElement>(null);
+	const bookmarkRef = useRef<HTMLDivElement>(null);
 
 	const onClickHandler = (e: SyntheticEvent<HTMLButtonElement>) => {
 		window.open(link, "_self");
@@ -46,6 +50,17 @@ const BookmarkWidget = ({
 		setShowFormModal(false);
 	};
 
+	// Added this to stop propogation
+	const handleStopPropogation = (e: SyntheticEvent<HTMLElement, MouseEvent>) => {
+		e.stopPropagation();
+	};
+
+	useOutsideClick({
+		containerRef,
+		closeMenu,
+		showModal,
+	});
+
 	const handleDeleteWidget = () => {
 		const updatedWidgets = widgetsData.filter((_, ind) => index !== ind);
 		setWidgetsData(updatedWidgets);
@@ -54,7 +69,7 @@ const BookmarkWidget = ({
 	};
 	// TODO: simplify the edit logic
 	const handleEditWidget = (name: string, link: string) => {
-		const updatedWidget = { ...widget, name, link };
+		const updatedWidget = { type, name, link };
 		// Remove the current widget from the widgetsData
 		const newWidgets = widgetsData.filter((_, ind) => index !== ind);
 		// Insert the updated widget into newWidgets
@@ -66,25 +81,9 @@ const BookmarkWidget = ({
 		closeFormModal();
 	};
 
-	const moreOptionsDom = () => {
-		return (
-			// TODO: try another logic to close the modal instead of onMouseLeave
-			<div className={styles.moreOptions} onMouseLeave={closeMenu}>
-				<div className={styles.moreOptionButton} onClick={openFormModal}>
-					<FontAwesomeIcon icon={faPen} className={styles.icon} />
-					<span className={styles.name}>Edit</span>
-				</div>
-				<div className={styles.moreOptionButton} onClick={handleDeleteWidget}>
-					<FontAwesomeIcon icon={faXmark} className={styles.icon} />
-					<span className={styles.name}>Delete</span>
-				</div>
-			</div>
-		);
-	};
-
 	return (
 		<>
-			<div className={styles.bookmarkWidgetContainer}>
+			<div className={styles.bookmarkWidgetContainer} ref={bookmarkRef}>
 				<button className={styles.bookmarkWidget} onClick={onClickHandler}>
 					<div className={styles.faviconHolder}>
 						<img src={getFaviconLink(link)} className={styles.favicon} />
@@ -92,13 +91,22 @@ const BookmarkWidget = ({
 					<span className={styles.nameWrapper}>{name || link}</span>
 					<div className={styles.editBookmarkWidget} onClick={(e) => openMenu(e)}>
 						<FontAwesomeIcon icon={faEllipsisVertical} size="xl" />
+						<div onClick={(e) => handleStopPropogation(e)} ref={containerRef}>
+							{showModal && (
+								<MoreOptions
+									bookmarkRef={bookmarkRef}
+									openFormModal={openFormModal}
+									handleDeleteWidget={handleDeleteWidget}
+								/>
+							)}
+						</div>
 					</div>
 				</button>
-				{showModal && moreOptionsDom()}
 			</div>
 			{/* Conditional Rendering to avoid the unnecessary render of below component */}
 			{showFormModal && (
 				<WidgetForm
+					isEditMode={true}
 					showModal={showFormModal}
 					currentName={name}
 					currentLink={link}

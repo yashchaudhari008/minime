@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import {
@@ -50,8 +50,6 @@ const WidgetHolder = () => {
 		}
 
 		const newWidgetData: WidgetData = {
-			// TODO: Another way to add id to avoid Math.random()
-			id: Math.floor(Math.random() * 98 + 1),
 			type: WidgetType.BookmarkWidget,
 			link: linkFromForm,
 			name: nameFromForm,
