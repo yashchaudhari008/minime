@@ -5,8 +5,8 @@
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
-	align-items: flex-end;
-	padding-right: 24px;
+    align-items: flex-end;
+    padding-right: 24px;
 	p,
 	a {
 		font-size: 14px;
@@ -28,4 +28,11 @@
 			margin-right: 4px;
 		}
 	}
+
+	@include respond-to('small') {
+        justify-content: center;
+        align-items: center;
+		text-align: center;
+		font-size: calc(14px + 0.5vw);
+    }
 }

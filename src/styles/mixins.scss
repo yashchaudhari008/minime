@@ -6,3 +6,20 @@
 @mixin font-inter {
 	font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+
+@mixin respond-to($breakpoint) {
+	@if $breakpoint == 'small' {
+	  @media (max-width: 600px) {
+		@content;
+	  }
+	} @else if $breakpoint == 'medium' {
+	  @media (min-width: 601px) and (max-width: 1024px) {
+		@content;
+	  }
+	} @else if $breakpoint == 'large' {
+	  @media (min-width: 1025px) {
+		@content;
+	  }
+	}
+  }
+  
