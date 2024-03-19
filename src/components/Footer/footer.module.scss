@@ -34,5 +34,10 @@
         align-items: center;
 		text-align: center;
 		font-size: calc(14px + 0.5vw);
+		p {
+			span {
+			  display: none;
+			}
+		  }
     }
 }
