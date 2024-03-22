@@ -18,15 +18,17 @@ const Footer = () => {
 				>
 					contributors
 				</a>
-				<span> | </span>
-				<a
-					target="_blank"
-					className={styles.github}
-					href="https://github.com/yashchaudhari008/minime"
-				>
-					<FontAwesomeIcon className={styles.icon} icon={faGithub} />
-					Github Page
-				</a>
+				<span> |</span>
+				<span className={styles.githubContainer}>
+					<a
+						target="_blank"
+						className={styles.github}
+						href="https://github.com/yashchaudhari008/minime"
+					>
+						<FontAwesomeIcon className={styles.icon} icon={faGithub} />
+						Github Page
+					</a>
+				</span>
 			</p>
 		</footer>
 	);

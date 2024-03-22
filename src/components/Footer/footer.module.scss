@@ -29,6 +29,12 @@
 		}
 	}
 
+	.githubContainer {
+        display: inline-block;
+        vertical-align: middle; 
+        margin-left: 8px; 
+    }
+
 	@include respond-to('small') {
         justify-content: center;
         align-items: center;
