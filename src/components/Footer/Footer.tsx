@@ -6,7 +6,7 @@ import styles from "./footer.module.scss";
 const Footer = () => {
 	return (
 		<footer className={styles.footer}>
-			<p>
+			<p className={styles.creditInfo}>
 				Made with <FontAwesomeIcon icon={faHeart} /> by&nbsp;
 				<a target="_blank" href="https://github.com/yashchaudhari008">
 					yashchaudhari008&nbsp;
@@ -18,7 +18,9 @@ const Footer = () => {
 				>
 					contributors
 				</a>
-				<span> | </span>
+				<span className={styles.seperator}> | </span>
+			</p>
+			<p className={styles.githubContainer}>
 				<a
 					target="_blank"
 					className={styles.github}

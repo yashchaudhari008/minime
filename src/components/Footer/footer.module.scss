@@ -5,7 +5,7 @@
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
-	align-items: flex-end;
+	align-items: center;
 	padding-right: 24px;
 	p,
 	a {
@@ -19,13 +19,33 @@
 			text-decoration: underline;
 		}
 	}
+	.githubContainer {
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 8px;
+		.github {
+			font-size: 20px;
+			font-weight: 800;
+			margin-left: 2px;
+			.icon {
+				margin-right: 4px;
+			}
+		}
+	}
 
-	.github {
-		font-size: 20px;
-		font-weight: 800;
-		margin-left: 2px;
-		.icon {
-			margin-right: 4px;
+	@include respond-to("small") {
+		flex-direction: column;
+		text-align: center;
+		padding-right: 0;
+		font-size: calc(14px + 0.5vw);
+		.creditInfo {
+			margin-bottom: 0;
+		}
+		.githubContainer {
+			margin-top: 4px;
+		}
+		.seperator {
+			display: none;
 		}
 	}
 }
