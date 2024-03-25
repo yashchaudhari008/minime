@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import {
@@ -8,8 +8,7 @@ import {
 	WidgetData,
 	updateWidgetsData,
 } from "../../utils/widgetsUtils";
-import Modal from "../shared/Modal/Modal";
-import InputField from "../shared/InputField/InputField";
+import WidgetForm from "../shared/WidgetForm/WidgetForm";
 import AddNewWidgetBtn from "../widgets/AddNewWidgetBtn/AddNewWidgetBtn";
 import BookmarkWidget from "../widgets/BookmarkWidget/BookmarkWidget";
 import DraggableWidget from "./DraggableWidget";
@@ -22,7 +21,15 @@ const WidgetHolder = () => {
 	const getWidgetDOM = (widgetData: WidgetData, index: number) => {
 		switch (widgetData.type) {
 			case WidgetType.BookmarkWidget:
-				return <BookmarkWidget key={index} {...widgetData} />;
+				return (
+					<BookmarkWidget
+						key={index}
+						index={index}
+						widgetsData={widgetsData}
+						setWidgetsData={setWidgetsData}
+						{...widgetData}
+					/>
+				);
 			default:
 				return null;
 		}
@@ -36,13 +43,7 @@ const WidgetHolder = () => {
 		setShowAddNewWidgetModal(false);
 	};
 
-	const onAddNewWidgetModalSubmit = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		const formData = new FormData(e.currentTarget);
-
-		const nameFromForm = formData.get("name")?.toString();
-		const linkFromForm = formData.get("url")?.toString() || "";
-
+	const onAddNewWidgetModalSubmit = (nameFromForm: string, linkFromForm: string) => {
 		if (!linkFromForm) {
 			alert("Link is Invalid!");
 			return;
@@ -84,23 +85,13 @@ const WidgetHolder = () => {
 				</DndProvider>
 				<AddNewWidgetBtn onClick={openAddNewWidgetModal} />
 			</div>
-
-			<Modal showModal={showAddNewWidgetModal} headerText="New Bookmark">
-				<form className={styles.modalContent} onSubmit={onAddNewWidgetModalSubmit}>
-					<div className={styles.formInputHolder}>
-						<InputField id="name" label="Name" />
-					</div>
-					<div className={styles.formInputHolder}>
-						<InputField id="url" label="Link" type="url" required />
-					</div>
-					<div className={styles.modalFooter}>
-						<button type="button" onClick={closeAddNewWidgetModal}>
-							Cancel
-						</button>
-						<button type="submit">Add</button>
-					</div>
-				</form>
-			</Modal>
+			{showAddNewWidgetModal && (
+				<WidgetForm
+					showModal={showAddNewWidgetModal}
+					onFormSubmit={onAddNewWidgetModalSubmit}
+					onCancelClick={closeAddNewWidgetModal}
+				/>
+			)}
 		</div>
 	);
 };
