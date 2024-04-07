@@ -6,3 +6,7 @@ export const getFaviconLink = (bookmarkLink: string) => {
 		return "https://placehold.co/24/202124/FFF?text=>";
 	}
 };
+
+export const getConfirmDialogMessage = (link: string, name?: string) => {
+	return `${name && `${name}\n`}${link}\n\nAre you sure you want to delete bookmark?`;
+};
