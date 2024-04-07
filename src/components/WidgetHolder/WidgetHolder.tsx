@@ -1,17 +1,17 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import {
 	addWidget,
 	getWidgets,
 	WidgetType,
-	WidgetData,
+	type WidgetData,
 	updateWidgetsData,
+	editWidget,
 } from "../../utils/widgetsUtils";
-import Modal from "../shared/Modal/Modal";
-import InputField from "../shared/InputField/InputField";
 import AddNewWidgetBtn from "../widgets/AddNewWidgetBtn/AddNewWidgetBtn";
 import BookmarkWidget from "../widgets/BookmarkWidget/BookmarkWidget";
+import AddEditWidgetModal from "../AddEditWidgetModal/AddWidgetModal";
 import DraggableWidget from "./DraggableWidget";
 import styles from "./widgetHolder.module.scss";
 
@@ -58,26 +58,15 @@ const WidgetHolder = () => {
 		setEditWidgetIndex(EDIT_WIDGET_EMPTY_STATE);
 	};
 
-	const onAddNewWidgetModalSubmit = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		const formData = new FormData(e.currentTarget);
-
-		const nameFromForm = formData.get("name")?.toString();
-		const linkFromForm = formData.get("url")?.toString() || "";
-
-		if (!linkFromForm) {
-			alert("Link is Invalid!");
-			return;
+	const addEditHandler = (
+		widgetIndex: number = EDIT_WIDGET_EMPTY_STATE,
+		widgetData: WidgetData
+	) => {
+		if (widgetIndex === EDIT_WIDGET_EMPTY_STATE) {
+			setWidgetsData(addWidget(widgetData));
+		} else {
+			setWidgetsData(editWidget(widgetData, widgetIndex));
 		}
-
-		const newWidgetData: WidgetData = {
-			type: WidgetType.BookmarkWidget,
-			link: linkFromForm,
-			name: nameFromForm,
-		};
-
-		setWidgetsData((oldWidgetsData) => [...oldWidgetsData, newWidgetData]);
-		addWidget(newWidgetData);
 		closeAddNewWidgetModal();
 	};
 
@@ -107,22 +96,13 @@ const WidgetHolder = () => {
 				<AddNewWidgetBtn onClick={openAddNewWidgetModal} />
 			</div>
 
-			<Modal showModal={showAddNewWidgetModal} headerText="New Bookmark">
-				<form className={styles.modalContent} onSubmit={onAddNewWidgetModalSubmit}>
-					<div className={styles.formInputHolder}>
-						<InputField id="name" label="Name" />
-					</div>
-					<div className={styles.formInputHolder}>
-						<InputField id="url" label="Link" type="url" required />
-					</div>
-					<div className={styles.modalFooter}>
-						<button type="button" onClick={closeAddNewWidgetModal}>
-							Cancel
-						</button>
-						<button type="submit">Add</button>
-					</div>
-				</form>
-			</Modal>
+			<AddEditWidgetModal
+				isEditModal={editWidgetIndex !== EDIT_WIDGET_EMPTY_STATE}
+				show={showAddNewWidgetModal}
+				onClose={closeAddNewWidgetModal}
+				addEditHandler={addEditHandler.bind(this, editWidgetIndex)}
+				widgetToEditData={widgetsData.find((_, index) => editWidgetIndex === index)}
+			/>
 		</div>
 	);
 };
