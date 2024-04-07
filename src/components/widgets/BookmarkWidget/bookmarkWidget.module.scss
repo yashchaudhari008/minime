@@ -3,6 +3,7 @@
 
 .bookmarkWidget {
 	@include font-inter;
+	position: relative;
 	color: $widgetTextColor;
 	padding: 0 20px;
 	height: $widgetHeight;
@@ -38,5 +39,29 @@
 		white-space: nowrap;
 		font-size: 22px;
 		font-weight: 600;
+	}
+
+	.button {
+		$size: 26px;
+
+		position: absolute;
+		padding: 5px;
+		height: $size;
+		width: $size;
+
+		border-radius: 100%;
+		background: $primaryColor;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.deleteButton {
+		top: -8px;
+		right: -8px;
+	}
+	.editButton {
+		bottom: -8px;
+		right: -8px;
 	}
 }

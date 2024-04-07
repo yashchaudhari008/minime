@@ -1,6 +1,8 @@
 import { SyntheticEvent } from "react";
 import type { WidgetData } from "../../../utils/widgetsUtils";
 import { getFaviconLink } from "./bookmarkUtils";
+import { faClose, faPen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./bookmarkWidget.module.scss";
 
 type BookmarkWidgetProps = WidgetData;
@@ -17,6 +19,18 @@ const BookmarkWidget = ({ name, link }: BookmarkWidgetProps) => {
 				<img src={getFaviconLink(link)} className={styles.favicon} />
 			</div>
 			<span className={styles.nameWrapper}>{name || link}</span>
+			<div className={`${styles.button} ${styles.deleteButton}`}>
+				<FontAwesomeIcon
+					title="Delete"
+					color="#000"
+					size="lg"
+					icon={faClose}
+					className={styles.icon}
+				/>
+			</div>
+			<div className={`${styles.button} ${styles.editButton}`}>
+				<FontAwesomeIcon title="Edit" color="#000" icon={faPen} className={styles.icon} />
+			</div>
 		</button>
 	);
 };
