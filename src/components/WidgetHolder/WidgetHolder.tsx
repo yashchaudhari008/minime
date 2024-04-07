@@ -19,10 +19,23 @@ const WidgetHolder = () => {
 	const [showAddNewWidgetModal, setShowAddNewWidgetModal] = useState(false);
 	const [widgetsData, setWidgetsData] = useState(getWidgets());
 
+	const handleWidgetDelete = (index: number) => {
+		const updatedWidgets = widgetsData.filter((_, ind) => index !== ind);
+		setWidgetsData(updatedWidgets);
+		updateWidgetsData(updatedWidgets);
+	};
+
 	const getWidgetDOM = (widgetData: WidgetData, index: number) => {
 		switch (widgetData.type) {
 			case WidgetType.BookmarkWidget:
-				return <BookmarkWidget key={index} {...widgetData} />;
+				return (
+					<BookmarkWidget
+						key={index}
+						widgetIndex={index}
+						{...widgetData}
+						handleWidgetDelete={handleWidgetDelete}
+					/>
+				);
 			default:
 				return null;
 		}

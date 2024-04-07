@@ -6,14 +6,27 @@ import { faClose, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./bookmarkWidget.module.scss";
 
-type BookmarkWidgetProps = WidgetData;
+type BookmarkWidgetProps = WidgetData & {
+	widgetIndex: number;
+	handleWidgetDelete: (index: number) => void;
+};
 
-const BookmarkWidget = ({ name, link }: BookmarkWidgetProps) => {
+const BookmarkWidget = ({
+	widgetIndex,
+	name,
+	link,
+	handleWidgetDelete,
+}: BookmarkWidgetProps) => {
 	const [hoverRef, isHovered] = useHover();
 
 	const onClickHandler = (e: SyntheticEvent<HTMLButtonElement>) => {
 		window.open(link, "_self");
 		e.currentTarget.blur();
+	};
+
+	const onDeleteBtnClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		event.stopPropagation();
+		handleWidgetDelete(widgetIndex);
 	};
 
 	return (
@@ -24,7 +37,10 @@ const BookmarkWidget = ({ name, link }: BookmarkWidgetProps) => {
 			<span className={styles.nameWrapper}>{name || link}</span>
 			{isHovered && (
 				<>
-					<div className={`${styles.button} ${styles.deleteButton}`}>
+					<div
+						className={`${styles.button} ${styles.deleteButton}`}
+						onClick={onDeleteBtnClick}
+					>
 						<FontAwesomeIcon
 							title="Delete"
 							color="#000"
