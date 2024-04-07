@@ -1,7 +1,7 @@
 import { SyntheticEvent } from "react";
 import useHover from "../../../hooks/useHover";
 import type { WidgetData } from "../../../utils/widgetsUtils";
-import { getFaviconLink } from "./bookmarkUtils";
+import { getConfirmDialogMessage, getFaviconLink } from "./bookmarkUtils";
 import { faClose, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./bookmarkWidget.module.scss";
@@ -28,7 +28,9 @@ const BookmarkWidget = ({
 
 	const onDeleteBtnClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		event.stopPropagation();
-		handleWidgetDelete(widgetIndex);
+		if (confirm(getConfirmDialogMessage(link, name)) === true) {
+			handleWidgetDelete(widgetIndex);
+		}
 	};
 
 	const onEditBtnClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
