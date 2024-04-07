@@ -9,6 +9,7 @@ import styles from "./bookmarkWidget.module.scss";
 type BookmarkWidgetProps = WidgetData & {
 	widgetIndex: number;
 	handleWidgetDelete: (index: number) => void;
+	handleWidgetEdit: (index: number) => void;
 };
 
 const BookmarkWidget = ({
@@ -16,6 +17,7 @@ const BookmarkWidget = ({
 	name,
 	link,
 	handleWidgetDelete,
+	handleWidgetEdit,
 }: BookmarkWidgetProps) => {
 	const [hoverRef, isHovered] = useHover();
 
@@ -27,6 +29,11 @@ const BookmarkWidget = ({
 	const onDeleteBtnClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		event.stopPropagation();
 		handleWidgetDelete(widgetIndex);
+	};
+
+	const onEditBtnClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		event.stopPropagation();
+		handleWidgetEdit(widgetIndex);
 	};
 
 	return (
@@ -49,7 +56,10 @@ const BookmarkWidget = ({
 							className={styles.icon}
 						/>
 					</div>
-					<div className={`${styles.button} ${styles.editButton}`}>
+					<div
+						className={`${styles.button} ${styles.editButton}`}
+						onClick={onEditBtnClick}
+					>
 						<FontAwesomeIcon
 							title="Edit"
 							color="#000"

@@ -15,14 +15,21 @@ import BookmarkWidget from "../widgets/BookmarkWidget/BookmarkWidget";
 import DraggableWidget from "./DraggableWidget";
 import styles from "./widgetHolder.module.scss";
 
+const EDIT_WIDGET_EMPTY_STATE = -1;
+
 const WidgetHolder = () => {
 	const [showAddNewWidgetModal, setShowAddNewWidgetModal] = useState(false);
 	const [widgetsData, setWidgetsData] = useState(getWidgets());
+	const [editWidgetIndex, setEditWidgetIndex] = useState(EDIT_WIDGET_EMPTY_STATE);
 
 	const handleWidgetDelete = (index: number) => {
 		const updatedWidgets = widgetsData.filter((_, ind) => index !== ind);
 		setWidgetsData(updatedWidgets);
 		updateWidgetsData(updatedWidgets);
+	};
+	const handleWidgetEdit = (index: number) => {
+		setEditWidgetIndex(index);
+		setShowAddNewWidgetModal(true);
 	};
 
 	const getWidgetDOM = (widgetData: WidgetData, index: number) => {
@@ -34,6 +41,7 @@ const WidgetHolder = () => {
 						widgetIndex={index}
 						{...widgetData}
 						handleWidgetDelete={handleWidgetDelete}
+						handleWidgetEdit={handleWidgetEdit}
 					/>
 				);
 			default:
@@ -47,6 +55,7 @@ const WidgetHolder = () => {
 
 	const closeAddNewWidgetModal = () => {
 		setShowAddNewWidgetModal(false);
+		setEditWidgetIndex(EDIT_WIDGET_EMPTY_STATE);
 	};
 
 	const onAddNewWidgetModalSubmit = (e: FormEvent<HTMLFormElement>) => {
