@@ -43,7 +43,7 @@ const BookmarkWidget = ({
 			<div className={styles.faviconHolder}>
 				<img src={getFaviconLink(link)} className={styles.favicon} />
 			</div>
-			<span className={styles.nameWrapper}>{name || link}</span>
+			{name && <span className={styles.nameWrapper}>{name}</span>}
 			{isHovered && (
 				<>
 					<div
