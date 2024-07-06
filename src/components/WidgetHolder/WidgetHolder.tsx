@@ -1,4 +1,5 @@
 import { useState } from "react";
+import classNames from "classnames";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import {
@@ -82,16 +83,21 @@ const WidgetHolder = () => {
 		<div className={styles.widgetHolderWrapper}>
 			<div className={styles.widgetHolder}>
 				<DndProvider backend={HTML5Backend}>
-					{widgetsData.map((widgetData, index) => (
-						<DraggableWidget
-							key={index}
-							index={index}
-							onDrop={moveWidget}
-							className={`${styles.widget}`}
-						>
-							{getWidgetDOM(widgetData, index)}
-						</DraggableWidget>
-					))}
+					{widgetsData.map((widgetData, index) => {
+						const widgetClass = classNames(styles.widget, {
+							[styles.fixedSizeWidget]: !widgetData?.name,
+						});
+						return (
+							<DraggableWidget
+								key={index}
+								index={index}
+								onDrop={moveWidget}
+								className={widgetClass}
+							>
+								{getWidgetDOM(widgetData, index)}
+							</DraggableWidget>
+						);
+					})}
 				</DndProvider>
 				<AddNewWidgetBtn onClick={openAddNewWidgetModal} />
 			</div>
