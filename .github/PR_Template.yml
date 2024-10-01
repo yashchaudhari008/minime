@@ -1,12 +1,3 @@
----
-name: Pull Request Template
-about: Use this template for your pull requests
-title: "[PR] Title of your pull request"
-labels: enhancement, documentation
-assignees: ''
-
----
-
 ## Description
 
 Please include a summary of the changes and the related issue number if applicable.
