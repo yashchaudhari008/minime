@@ -1,5 +1,5 @@
 import TopBar from "./components/TopBar/TopBar";
-import WidgetHolder from "./components/WidgetHolder/WidgetHolder";
+import WidgetHolder from "./components/WidgetHolder/WidgetHolder"; 
 import Footer from "./components/Footer/Footer";
 import styles from "./app.module.scss";
 
