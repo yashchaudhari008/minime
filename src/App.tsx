@@ -1,18 +1,20 @@
-import TopBar from "./components/TopBar/TopBar";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import WidgetHolder from "./components/WidgetHolder/WidgetHolder";
-import Footer from "./components/Footer/Footer";
+import SettingsPage from "./components/SettingsPage/SettingsPage";
+import Layout from "./components/Layout/Layout";
 import styles from "./app.module.scss";
 
 function App() {
-	return (
-		<>
-			<div className={styles.app}>
-				<TopBar />
-				<WidgetHolder />
-				<Footer />
-			</div>
-		</>
-	);
+    return (
+        <Router>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<WidgetHolder />} />
+                    <Route path="/settings" element={<SettingsPage />} />
+                </Routes>
+            </Layout>
+        </Router>
+    );
 }
 
 export default App;
