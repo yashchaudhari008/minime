@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@800&family=Ubuntu+Mono&display=swap");
 @import "/src/styles/variables.scss";
 @import "/src/styles/mixins.scss";
+@import "/src/styles/scrollbar.scss";
+
 
 :root {
 	@include font-inter;
