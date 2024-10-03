@@ -1,6 +1,16 @@
 @import "/src/styles/mixins.scss";
 
 .topBar {
-	@include font-poppins;
-	width: 100%;
+    @include font-poppins;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.settingsIcon {
+    cursor: pointer;
+	font-size: 37px;
+	color: #9c988d;
 }

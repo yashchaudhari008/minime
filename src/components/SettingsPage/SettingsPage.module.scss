@@ -1,0 +1,68 @@
+// Define variables for common colors
+$background-color: #121212;
+$text-color: #d3cdc7;
+$button-color: #918d85;
+$button-text-color: #000;
+$hover-color: lighten($button-color, 10%);
+$cross-hover-color: lighten(#9c988d, 10%);
+
+.settingsPage {
+  background-color: $background-color;
+  color: $text-color;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+
+  .header {
+    display: flex;
+    justify-content: space-between; // Ensures title and cross icon are far apart
+    align-items: center; // Vertically center the title and the icon
+
+    h1 {
+      font-size: 1.5rem; // Reduced font size to match the image
+      font-family: 'Poppins', sans-serif;
+      margin: 0; // Remove margin
+      color: $text-color; // Use the same color as other elements
+    }
+
+    .crossIcon {
+      cursor: pointer;
+      font-size: 1.8rem; // Adjust size for the cross icon
+      color: #9c988d;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $cross-hover-color;
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end; // Align button to the right
+    padding: 20px 0; // Add padding to the bottom
+
+    .saveButton {
+      background-color: $button-color;
+      color: $button-text-color;
+      border: none;
+      padding: 12px 24px; // Slightly larger padding for better aesthetics
+      border-radius: 8px;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      .saveIcon {
+        margin-right: 8px;
+      }
+
+      &:hover {
+        background-color: $hover-color;
+      }
+    }
+  }
+}
