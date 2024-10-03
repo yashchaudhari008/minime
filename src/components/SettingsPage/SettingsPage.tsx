@@ -12,7 +12,7 @@ const SettingsPage = () => {
 
     const handleSaveClick = () => {
         // Add your save logic here
-        console.log("Settings saved!");
+
     };
 
     return (

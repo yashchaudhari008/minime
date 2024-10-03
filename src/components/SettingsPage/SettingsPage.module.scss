@@ -13,7 +13,7 @@ $cross-hover-color: lighten(#9c988d, 10%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: 50px 225px;
 
   .header {
     display: flex;
@@ -25,6 +25,7 @@ $cross-hover-color: lighten(#9c988d, 10%);
       font-family: 'Poppins', sans-serif;
       margin: 0; // Remove margin
       color: $text-color; // Use the same color as other elements
+      font-size: xxx-large;
     }
 
     .crossIcon {
