@@ -1,16 +1,6 @@
-@import "/src/styles/variables.scss";
 @import "/src/styles/mixins.scss";
 
 .topBar {
 	@include font-poppins;
 	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-
-	.settingsIcon {
-		color: $clockColor;
-		margin-right: 12px;
-		cursor: pointer;
-	}
 }
