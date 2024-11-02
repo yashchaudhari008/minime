@@ -1,17 +1,15 @@
-import TopBar from "./components/TopBar/TopBar";
-import WidgetHolder from "./components/WidgetHolder/WidgetHolder";
-import Footer from "./components/Footer/Footer";
-import styles from "./app.module.scss";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Settings from "./pages/Settings/Settings";
 
 function App() {
 	return (
-		<>
-			<div className={styles.app}>
-				<TopBar />
-				<WidgetHolder />
-				<Footer />
-			</div>
-		</>
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/minime/settings" element={<Settings />} />
+			</Routes>
+		</BrowserRouter>
 	);
 }
 

@@ -1,0 +1,60 @@
+@import "/src/styles/variables.scss";
+@import "/src/styles/mixins.scss";
+
+.settingsWrapper {
+	height: 100%;
+	display: flex;
+	gap: 16px;
+	padding: 32px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	.settings {
+		@include font-poppins;
+		color: $clockColor;
+		max-width: max(60vw, 900px);
+		max-height: 80vh;
+		width: 100%;
+
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.headerText {
+				margin: 0;
+				font-size: 46px;
+				font-weight: 800;
+			}
+			.closeIcon {
+				cursor: pointer;
+			}
+		}
+
+		.content {
+			flex: 1;
+		}
+		.footer {
+			display: flex;
+			justify-content: flex-end;
+
+			.saveBtn {
+				display: flex;
+				gap: 6px;
+				align-items: center;
+				background-color: $clockColor;
+				padding: 16px;
+				border-radius: 6px;
+				cursor: pointer;
+
+				.saveBtnText {
+					font-weight: 600;
+				}
+			}
+		}
+	}
+}
