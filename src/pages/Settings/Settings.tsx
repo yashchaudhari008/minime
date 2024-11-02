@@ -10,9 +10,9 @@ const Settings = () => {
 		navigate("/");
 	};
 
-	const getHeaderDom = () => {
-		return (
-			<div className={styles.headerWrapper}>
+	return (
+		<div className={styles.settingsWrapper}>
+			<div className={styles.settings}>
 				<div className={styles.header}>
 					<p className={styles.headerText}>Settings</p>
 					<FontAwesomeIcon
@@ -22,26 +22,13 @@ const Settings = () => {
 						onClick={closeSettingPage}
 					/>
 				</div>
-			</div>
-		);
-	};
-
-	const getFooterDom = () => {
-		return (
-			<div className={styles.footer}>
-				<button className={styles.saveBtn}>
-					<FontAwesomeIcon icon={faSave} />
-					<span className={styles.saveBtnText}>Save</span>
-				</button>
-			</div>
-		);
-	};
-
-	return (
-		<div className={styles.mainWrapper}>
-			<div className={styles.settings}>
-				{getHeaderDom()}
-				{getFooterDom()}
+				<div className={styles.content}></div>
+				<div className={styles.footer}>
+					<button className={styles.saveBtn}>
+						<FontAwesomeIcon icon={faSave} />
+						<span className={styles.saveBtnText}>Save</span>
+					</button>
+				</div>
 			</div>
 		</div>
 	);

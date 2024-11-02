@@ -1,35 +1,42 @@
 @import "/src/styles/variables.scss";
 @import "/src/styles/mixins.scss";
 
-.mainWrapper {
+.settingsWrapper {
 	height: 100%;
-	padding: 20px 0;
+	display: flex;
+	gap: 16px;
+	padding: 32px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	.settings {
 		@include font-poppins;
 		color: $clockColor;
-		width: 70%;
-		margin: auto;
-		padding: 40px;
+		max-width: max(60vw, 900px);
+		max-height: 80vh;
+		width: 100%;
+
 		display: flex;
 		flex-direction: column;
 		height: 100%;
 
-		.headerWrapper {
-			flex: 1;
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
 
-			.header {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-
-				.headerText {
-					font-size: 46px;
-					font-weight: 800;
-				}
-				.closeIcon {
-					cursor: pointer;
-				}
+			.headerText {
+				margin: 0;
+				font-size: 46px;
+				font-weight: 800;
 			}
+			.closeIcon {
+				cursor: pointer;
+			}
+		}
+
+		.content {
+			flex: 1;
 		}
 		.footer {
 			display: flex;
