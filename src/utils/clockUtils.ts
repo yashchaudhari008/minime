@@ -2,7 +2,7 @@ export const getTime = (currentDateObj: Date, is12HourFormat = true) => {
 	let hours = currentDateObj.getHours();
 	const minutes = currentDateObj.getMinutes();
 
-	const meridiem = hours < 12 ? "AM" : "PM";
+	const meridiem = is12HourFormat && (hours < 12 ? "AM" : "PM");
 
 	// Converts hours to 12-hour format
 	if (is12HourFormat) {
