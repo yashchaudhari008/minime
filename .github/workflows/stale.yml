@@ -1,0 +1,14 @@
+name: Unassign inactive contributors
+on:
+  schedule:
+    - cron: '0 1 * * 1'   # Weekly at 1am UTC
+
+jobs:
+  unassign-inactive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: boundfoxstudios/action-unassign-contributor-after-days-of-inactivity@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          last-activity: 90
+          message: 'Unassigned due to 3 months inactivity.'
