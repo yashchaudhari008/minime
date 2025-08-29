@@ -1,0 +1,95 @@
+@import "/src/styles/mixins.scss";
+@import "/src/styles/variables.scss";
+
+.confirmModalContent {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	padding-top: 16px;
+	
+	.message {
+		color: $modalTextColor;
+		font-size: 16px;
+		line-height: 1.5;
+		text-align: center;
+		font-weight: 500;
+	}
+	
+	.actions {
+		display: flex;
+		justify-content: center;
+		gap: 16px;
+		
+		.button {
+			@include font-inter;
+			font-weight: 600;
+			padding: 12px 24px;
+			border-radius: 8px;
+			border: none;
+			cursor: pointer;
+			font-size: 14px;
+			transition: all 0.2s ease;
+			
+			&:hover {
+				transform: translateY(-1px);
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			}
+			
+			&:active {
+				transform: translateY(0);
+			}
+		}
+		
+		.cancelButton {
+			background-color: $secondaryColor;
+			color: $primaryColor;
+			border: 2px solid $primaryColor;
+			
+			&:hover {
+				background-color: $primaryColor;
+				color: $appBackground;
+			}
+		}
+		
+		.confirmButton {
+			&.danger {
+				background-color: #dc3545;
+				color: white;
+				
+				&:hover {
+					background-color: #c82333;
+				}
+			}
+			
+			&.primary {
+				background-color: $modalButtonColor;
+				color: $modalButtonTextColor;
+				
+				&:hover {
+					background-color: darken($modalButtonColor, 10%);
+				}
+			}
+		}
+	}
+	
+	@include respond-to('small') {
+		gap: 20px;
+		padding-top: 20px;
+		
+		.message {
+			font-size: 15px;
+			padding: 0 8px;
+		}
+		
+		.actions {
+			flex-direction: column;
+			gap: 12px;
+			
+			.button {
+				padding: 16px 24px;
+				font-size: 16px;
+				min-height: 48px;
+			}
+		}
+	}
+}
