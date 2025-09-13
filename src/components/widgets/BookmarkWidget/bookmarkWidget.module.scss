@@ -19,6 +19,13 @@
 
 	cursor: pointer;
 
+	&:hover {
+		border-radius: $widgetBorderRadiusOnHover;
+		.faviconHolder {
+			border-radius: $widgetBorderRadiusOnHover;
+		}
+	}
+
 	--size: 52px;
 	.faviconHolder {
 		border-radius: 50%;
@@ -64,6 +71,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
+		&:hover {
+			border-radius: 6px;
+		}
 	}
 	.deleteButton {
 		top: -8px;
