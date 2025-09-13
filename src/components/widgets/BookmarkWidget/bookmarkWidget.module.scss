@@ -42,13 +42,9 @@
 	}
 
 	.nameWrapper {
-		height: var(--size);
-		padding-inline: 4px;
+		padding-inline: 8px;
 
 		flex: 1;
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
 
 		text-overflow: ellipsis;
 		overflow: hidden;
