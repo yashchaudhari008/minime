@@ -6,7 +6,8 @@ $primaryColor: #9c988d;
 $secondaryColor: #1e1e1e;
 
 $appFooterTextColor: $primaryColor;
-$clockColor: $primaryColor;
+$clockColor: $secondaryColor;
+$clockTextColor: $primaryColor;
 $selectionColor: $primaryColor;
 
 // Modal Colors
@@ -21,8 +22,9 @@ $modalButtonTextColor: $appBackground;
 $widgetBackground: $secondaryColor;
 $widgetTextColor: $primaryColor;
 $widgetImageHolderColor: $appBackground;
-$widgetBorderRadius: 20px;
-$widgetHeight: 88px;
+$widgetBorderRadius: 32px;
+$widgetBorderRadiusOnHover: 12px;
+$widgetHeight: 52px;
 
 $addNewWidgetButtonColor: $secondaryColor;
 $addNewWidgetButtonIconColor: $primaryColor;
