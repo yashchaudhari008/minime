@@ -2,11 +2,12 @@
 @import "/src/styles/mixins.scss";
 
 .bookmarkWidget {
-	@include font-inter;
+	@include font-poppins;
 	position: relative;
 	color: $widgetTextColor;
-	padding: 0 20px;
-	height: $widgetHeight;
+	--widgetPadding: 6px;
+	padding: var(--widgetPadding);
+	height: calc($widgetHeight + (--widgetPadding * 2));
 	width: 100%;
 
 	border-radius: $widgetBorderRadius;
@@ -14,9 +15,11 @@
 
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap: 4px;
 
 	cursor: pointer;
+
+	--size: 52px;
 	.faviconHolder {
 		border-radius: 50%;
 		overflow: hidden;
@@ -24,7 +27,6 @@
 		place-items: center;
 		background-color: $widgetImageHolderColor;
 		.favicon {
-			--size: 52px;
 			padding: 12px;
 			width: var(--size);
 			height: var(--size);
@@ -33,12 +35,19 @@
 	}
 
 	.nameWrapper {
+		height: var(--size);
+		padding-inline: 4px;
+
 		flex: 1;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+
 		text-overflow: ellipsis;
 		overflow: hidden;
 		white-space: nowrap;
 		font-size: 22px;
-		font-weight: 600;
+		font-weight: 400;
 	}
 
 	.button {
