@@ -13,7 +13,7 @@
 	padding-inline: 64px;
 	border-radius: 64px;
 
-	background-color: $secondaryColor;
+	background-color: $clockTextColor;
 
 	.meridiem {
 		@include font-inter;
