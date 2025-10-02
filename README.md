@@ -30,6 +30,9 @@ Streamlined. Stylish. Simple.
 
 Experience a clean and modern design that enhances your browsing experience. This web-app is your gateway to the web, keeping everything simple yet functional. Minime is tailored for those who value minimalism and efficiency in their online interactions.
 
+<br/>
+<img width="1919" height="865" alt="image" src="https://github.com/user-attachments/assets/07b1de63-aaca-4cdb-9104-870446632805" />
+
 #### Key Features
 
 - **Clean Aesthetic**: Enjoy a minimalist layout that focuses on what matters most—your content.
