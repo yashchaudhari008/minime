@@ -1,0 +1,76 @@
+@import "/src/styles/variables.scss";
+@import "/src/styles/mixins.scss";
+
+.root {
+	@include font-poppins;
+	color: $widgetTextColor;
+	--widgetPadding: 6px;
+	padding: var(--widgetPadding);
+	height: calc($widgetHeight + (--widgetPadding * 2));
+	width: 100%;
+
+	border-radius: $widgetBorderRadius;
+	background-color: $widgetBackground;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	--size: 52px;
+	.faviconHolder {
+		border-radius: 50%;
+		overflow: hidden;
+		display: grid;
+		place-items: center;
+		background-color: $widgetImageHolderColor;
+		.favicon {
+			padding: 12px;
+			width: var(--size);
+			height: var(--size);
+			filter: contrast(1.1);
+		}
+	}
+
+	.nameWrapper {
+		padding-inline: 8px;
+
+		flex: 1;
+
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		font-size: 22px;
+		font-weight: 400;
+	}
+
+	.bookmarkButton {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	.action {
+		display: flex;
+		gap: 8px;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.actionButton {
+		$size: 26px;
+
+		padding: 5px;
+		height: $size;
+		width: $size;
+
+		border-radius: 100%;
+		background: $primaryColor;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.actionButtonIcon {
+		font-size: 14px;
+	}
+}

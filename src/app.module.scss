@@ -9,3 +9,8 @@
 		transition: border-radius 0.2s ease;
 	}
 }
+
+.mobileApp {
+	@extend .app;
+	padding: 16px;
+}

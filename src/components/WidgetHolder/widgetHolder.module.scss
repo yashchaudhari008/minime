@@ -10,6 +10,9 @@
 		align-items: center;
 		gap: 16px;
 		flex-wrap: wrap;
+
+		position: relative;
+
 		.widget {
 			flex: 1;
 			max-width: 350px;

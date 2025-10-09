@@ -16,6 +16,9 @@ import AddEditWidgetModal from "../AddEditWidgetModal/AddWidgetModal";
 import DraggableWidget from "./DraggableWidget";
 import styles from "./widgetHolder.module.scss";
 
+import { isBrowser } from "react-device-detect";
+import MobileBookmarkWidget from "../widgets/MobileBookmarkWidget/MobileBookmarkWidget";
+
 const EDIT_WIDGET_EMPTY_STATE = -1;
 
 const WidgetHolder = () => {
@@ -36,8 +39,16 @@ const WidgetHolder = () => {
 	const getWidgetDOM = (widgetData: WidgetData, index: number) => {
 		switch (widgetData.type) {
 			case WidgetType.BookmarkWidget:
-				return (
+				return isBrowser ? (
 					<BookmarkWidget
+						key={index}
+						widgetIndex={index}
+						{...widgetData}
+						handleWidgetDelete={handleWidgetDelete}
+						handleWidgetEdit={handleWidgetEdit}
+					/>
+				) : (
+					<MobileBookmarkWidget
 						key={index}
 						widgetIndex={index}
 						{...widgetData}
