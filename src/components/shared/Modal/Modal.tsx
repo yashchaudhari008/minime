@@ -19,9 +19,16 @@ const Modal = ({
 	const overlayClass = classNames(styles.overlay, {
 		[styles.rightSideModal]: rightSideModal,
 	});
+
+	const onKeyDownHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
+		if (e.key === "Escape" && onCloseClick) {
+			onCloseClick();
+		}
+	}
+
 	return (
 		showModal && (
-			<div className={overlayClass} onClick={onCloseClick}>
+			<div className={overlayClass} onClick={onCloseClick} onKeyDown={onKeyDownHandler}>
 				<div className={styles.modal} onClick={(e) => {
 					e.stopPropagation();
 				}}>
