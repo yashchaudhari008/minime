@@ -1,0 +1,22 @@
+@import "/src/styles/variables.scss";
+@import "/src/styles/mixins.scss";
+
+.notepadWidget {
+	padding: 16px 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: 50%;
+	border: 5px solid $addNewWidgetButtonColor;
+
+	&:hover {
+		border-radius: $widgetBorderRadiusOnHover;
+	}
+
+	cursor: pointer;
+	.icon {
+		color: $addNewWidgetButtonIconColor;
+		font-size: 24px;
+	}
+}

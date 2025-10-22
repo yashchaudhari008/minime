@@ -14,6 +14,7 @@ import AddNewWidgetBtn from "../widgets/AddNewWidgetBtn/AddNewWidgetBtn";
 import BookmarkWidget from "../widgets/BookmarkWidget/BookmarkWidget";
 import AddEditWidgetModal from "../AddEditWidgetModal/AddWidgetModal";
 import DraggableWidget from "./DraggableWidget";
+import NotepadWidget from "../widgets/NotepadWidget/NotepadWidget";
 import styles from "./widgetHolder.module.scss";
 
 const EDIT_WIDGET_EMPTY_STATE = -1;
@@ -82,6 +83,7 @@ const WidgetHolder = () => {
 	return (
 		<div className={styles.widgetHolderWrapper}>
 			<div className={styles.widgetHolder}>
+				<NotepadWidget />
 				<DndProvider backend={HTML5Backend}>
 					{widgetsData.map((widgetData, index) => {
 						const widgetClass = classNames(styles.widget, {
