@@ -1,19 +1,25 @@
 import React from "react";
 import styles from "./modal.module.scss";
+import classNames from "classnames";
 
 type ModalProps = {
 	showModal: boolean;
 	headerText?: string;
+	rightSideModal?: boolean;
 };
 
 const Modal = ({
 	children: modalContent,
 	showModal,
 	headerText,
+	rightSideModal = false,
 }: React.PropsWithChildren<ModalProps>) => {
+	const overlayClass = classNames(styles.overlay, {
+		[styles.rightSideModal]: rightSideModal,
+	});
 	return (
 		showModal && (
-			<div className={styles.overlay}>
+			<div className={overlayClass}>
 				<div className={styles.modal}>
 					{headerText && <div className={styles.header}>{headerText}</div>}
 					{modalContent}
