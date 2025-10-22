@@ -1,20 +1,37 @@
 import React from "react";
 import styles from "./modal.module.scss";
+import classNames from "classnames";
 
 type ModalProps = {
 	showModal: boolean;
+	onCloseClick?: () => void;
 	headerText?: string;
+	rightSideModal?: boolean;
 };
 
 const Modal = ({
 	children: modalContent,
 	showModal,
 	headerText,
+	rightSideModal = false,
+	onCloseClick
 }: React.PropsWithChildren<ModalProps>) => {
+	const overlayClass = classNames(styles.overlay, {
+		[styles.rightSideModal]: rightSideModal,
+	});
+
+	const onKeyDownHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
+		if (e.key === "Escape" && onCloseClick) {
+			onCloseClick();
+		}
+	}
+
 	return (
 		showModal && (
-			<div className={styles.overlay}>
-				<div className={styles.modal}>
+			<div className={overlayClass} onClick={onCloseClick} onKeyDown={onKeyDownHandler}>
+				<div className={styles.modal} onClick={(e) => {
+					e.stopPropagation();
+				}}>
 					{headerText && <div className={styles.header}>{headerText}</div>}
 					{modalContent}
 				</div>

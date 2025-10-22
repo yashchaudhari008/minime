@@ -14,12 +14,15 @@ import AddNewWidgetBtn from "../widgets/AddNewWidgetBtn/AddNewWidgetBtn";
 import BookmarkWidget from "../widgets/BookmarkWidget/BookmarkWidget";
 import AddEditWidgetModal from "../AddEditWidgetModal/AddWidgetModal";
 import DraggableWidget from "./DraggableWidget";
+import NotepadWidget from "../widgets/NotepadWidget/NotepadWidget";
+import NotepadWidgetModal from "../NotepadWidgetModal/NotepadWidgetModal";
 import styles from "./widgetHolder.module.scss";
 
 const EDIT_WIDGET_EMPTY_STATE = -1;
 
 const WidgetHolder = () => {
 	const [showAddNewWidgetModal, setShowAddNewWidgetModal] = useState(false);
+	const [showNotepadWidgetModal, setShowNotepadWidgetModal] = useState(false);
 	const [widgetsData, setWidgetsData] = useState(getWidgets());
 	const [editWidgetIndex, setEditWidgetIndex] = useState(EDIT_WIDGET_EMPTY_STATE);
 
@@ -49,6 +52,14 @@ const WidgetHolder = () => {
 				return null;
 		}
 	};
+
+	const openNotepadWidgetModal = () => {
+		setShowNotepadWidgetModal(true);
+	}
+
+	const closeNotepadWidgetModal = () => {
+		setShowNotepadWidgetModal(false);
+	}
 
 	const openAddNewWidgetModal = () => {
 		setShowAddNewWidgetModal(true);
@@ -82,6 +93,7 @@ const WidgetHolder = () => {
 	return (
 		<div className={styles.widgetHolderWrapper}>
 			<div className={styles.widgetHolder}>
+				<NotepadWidget onClick={openNotepadWidgetModal} />
 				<DndProvider backend={HTML5Backend}>
 					{widgetsData.map((widgetData, index) => {
 						const widgetClass = classNames(styles.widget, {
@@ -108,6 +120,10 @@ const WidgetHolder = () => {
 				onClose={closeAddNewWidgetModal}
 				addEditHandler={addEditHandler.bind(this, editWidgetIndex)}
 				widgetToEditData={widgetsData.find((_, index) => editWidgetIndex === index)}
+			/>
+			<NotepadWidgetModal
+				show={showNotepadWidgetModal}
+				onClose={closeNotepadWidgetModal}
 			/>
 		</div>
 	);
