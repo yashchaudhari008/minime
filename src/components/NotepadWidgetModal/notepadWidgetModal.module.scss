@@ -1,0 +1,12 @@
+@import "/src/styles/variables.scss";
+
+.notes {
+	resize: none;
+	padding: 16px;
+	background-color: $modalTextColor;
+	border-radius: $widgetBorderRadiusOnHover;
+	border: none;
+	&::placeholder {
+		color: rgba(#000, 0.7);
+	}
+}
