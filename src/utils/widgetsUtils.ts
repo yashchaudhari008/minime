@@ -8,8 +8,10 @@ export type WidgetData = {
 	link: string;
 };
 
+const ls_widgetsData_key = "minime/widgetsData";
+
 export const getWidgets = () => {
-	const localStorageWidgetsData = localStorage.getItem("widgetsData");
+	const localStorageWidgetsData = localStorage.getItem(ls_widgetsData_key);
 
 	try {
 		if (!localStorageWidgetsData) {
@@ -29,7 +31,7 @@ export const addWidget = (newWidgetData: WidgetData) => {
 	const oldWidgetsData = getWidgets();
 	try {
 		const newWidgetsData = [...oldWidgetsData, newWidgetData];
-		localStorage.setItem("widgetsData", JSON.stringify(newWidgetsData));
+		localStorage.setItem(ls_widgetsData_key, JSON.stringify(newWidgetsData));
 		return newWidgetsData;
 	} catch (e) {
 		console.error("Failed while adding new widget:", e);
@@ -44,7 +46,7 @@ export const editWidget = (updatedWidgetData: WidgetData, atIndex: number) => {
 		const newWidgetsData = oldWidgetsData.filter((_, ind) => atIndex !== ind);
 		// Insert the updated widget into newWidgetsData
 		newWidgetsData.splice(atIndex, 0, updatedWidgetData);
-		localStorage.setItem("widgetsData", JSON.stringify(newWidgetsData));
+		localStorage.setItem(ls_widgetsData_key, JSON.stringify(newWidgetsData));
 
 		return newWidgetsData;
 	} catch (e) {
@@ -55,7 +57,7 @@ export const editWidget = (updatedWidgetData: WidgetData, atIndex: number) => {
 
 export const updateWidgetsData = (newWidgetsData: WidgetData[]) => {
 	try {
-		localStorage.setItem("widgetsData", JSON.stringify(newWidgetsData));
+		localStorage.setItem(ls_widgetsData_key, JSON.stringify(newWidgetsData));
 	} catch (e) {
 		console.error("Failed while updating widgets data:", e);
 	}
