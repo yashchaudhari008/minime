@@ -4,6 +4,7 @@ import classNames from "classnames";
 
 type ModalProps = {
 	showModal: boolean;
+	onCloseClick?: () => void;
 	headerText?: string;
 	rightSideModal?: boolean;
 };
@@ -13,14 +14,17 @@ const Modal = ({
 	showModal,
 	headerText,
 	rightSideModal = false,
+	onCloseClick
 }: React.PropsWithChildren<ModalProps>) => {
 	const overlayClass = classNames(styles.overlay, {
 		[styles.rightSideModal]: rightSideModal,
 	});
 	return (
 		showModal && (
-			<div className={overlayClass}>
-				<div className={styles.modal}>
+			<div className={overlayClass} onClick={onCloseClick}>
+				<div className={styles.modal} onClick={(e) => {
+					e.stopPropagation();
+				}}>
 					{headerText && <div className={styles.header}>{headerText}</div>}
 					{modalContent}
 				</div>

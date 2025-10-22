@@ -42,7 +42,7 @@ const AddEditWidgetModal = ({
 	const defaultName = isEditModal ? widgetToEditData?.name || "" : "";
 	const defaultLink = isEditModal ? widgetToEditData?.link || "" : "";
 	return (
-		<Modal showModal={show} headerText={`${isEditModal ? "Edit" : "New"} Bookmark`}>
+		<Modal showModal={show} onCloseClick={onClose} headerText={`${isEditModal ? "Edit" : "New"} Bookmark`}>
 			<form className={styles.modalContent} onSubmit={onFormSubmit}>
 				<div className={styles.formInputHolder}>
 					<InputField id="name" label="Name" defaultValue={defaultName} />

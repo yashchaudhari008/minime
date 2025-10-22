@@ -12,7 +12,7 @@ const NotepadWidgetModal = ({
 }: NotepadWidgetModalProps) => {
 
 	return (
-		<Modal showModal={show} headerText="Quick Note" rightSideModal>
+		<Modal showModal={show} onCloseClick={onClose} headerText="Quick Note" rightSideModal>
 			<textarea className={styles.notes} placeholder="Add a note here" />
 		</Modal>
 	);
