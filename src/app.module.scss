@@ -5,7 +5,14 @@
 	padding: 16px;
 	padding-bottom: 0px;
 	flex-direction: column;
+
 	* {
 		transition: border-radius 0.2s ease;
 	}
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	gap: 3rem;
 }

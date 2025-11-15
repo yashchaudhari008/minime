@@ -1,0 +1,7 @@
+@import "/src/styles/variables.scss";
+
+.divider {
+  width: 100%;
+  border-bottom: 5px solid rgba($primaryColor, 0.05);
+  border-radius: 10px;
+}

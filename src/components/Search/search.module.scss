@@ -1,0 +1,23 @@
+@import "/src/styles/mixins.scss";
+
+.searchForm {
+  width: 100%;
+  height: 70px;
+
+  input {
+    @include font-poppins;
+
+    width: 100%;
+    height: 100%;
+
+    font-size: 18px;
+    background: none;
+    color: #9c988d;
+
+    border: 1px solid #9c988d;
+    border-radius: 64px;
+
+    padding-left: 20px;
+    outline: none;
+  }
+}
