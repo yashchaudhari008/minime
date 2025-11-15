@@ -21,7 +21,7 @@ const Search = () => {
     <form onSubmit={handleSubmit(onSearch)} className={styles.searchForm}>
       <label htmlFor="search"><FontAwesomeIcon icon={faSearch} /></label>
       <input
-        {...register('searchValue')}
+        {...register('searchValue', { required: true })}
         type="search"
         placeholder="Search..."
         id='search'
