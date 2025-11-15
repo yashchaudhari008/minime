@@ -1,4 +1,6 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import styles from './search.module.scss';
 
 interface Inputs {
@@ -17,10 +19,12 @@ const Search = () => {
 
   return (
     <form onSubmit={handleSubmit(onSearch)} className={styles.searchForm}>
+      <label htmlFor="search"><FontAwesomeIcon icon={faSearch} /></label>
       <input
+        {...register('searchValue')}
         type="search"
         placeholder="Search..."
-        {...register('searchValue')}
+        id='search'
       />
     </form>
   )

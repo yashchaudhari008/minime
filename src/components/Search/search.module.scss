@@ -1,23 +1,41 @@
 @import "/src/styles/mixins.scss";
 
 .searchForm {
-  width: 100%;
-  height: 70px;
+  height: 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #9c988d;
 
   input {
     @include font-poppins;
 
-    width: 100%;
+    width: 600px;
     height: 100%;
 
     font-size: 18px;
     background: none;
     color: #9c988d;
 
-    border: 1px solid #9c988d;
+    border: 1px solid #9c988d90;
     border-radius: 64px;
 
-    padding-left: 20px;
+    padding-left: 50px;
     outline: none;
+  }
+
+
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+  }
+
+
+  label {
+    position: absolute;
+    left: 20px;
+    font-size: 20px;
   }
 }
