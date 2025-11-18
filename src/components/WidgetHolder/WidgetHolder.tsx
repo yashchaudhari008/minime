@@ -101,6 +101,7 @@ const WidgetHolder = ({ searchValue }: WidgetHolderProps) => {
 
 	return (
 		<div className={styles.widgetHolderWrapper}>
+
 			<div className={styles.widgetHolder}>
 				<NotepadWidget onClick={openNotepadWidgetModal} />
 				<DndProvider backend={HTML5Backend}>
@@ -122,6 +123,9 @@ const WidgetHolder = ({ searchValue }: WidgetHolderProps) => {
 					})}
 				</DndProvider>
 				<AddNewWidgetBtn onClick={openAddNewWidgetModal} />
+				{searchValue.length > 0 && getVisibleWidgets().length === 0 && (
+					<h2>Press ENTER to search on google.</h2>
+				)}
 			</div>
 
 			<AddEditWidgetModal
@@ -135,6 +139,7 @@ const WidgetHolder = ({ searchValue }: WidgetHolderProps) => {
 				show={showNotepadWidgetModal}
 				onClose={closeNotepadWidgetModal}
 			/>
+
 		</div>
 	);
 };
