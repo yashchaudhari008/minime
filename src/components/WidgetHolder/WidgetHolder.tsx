@@ -20,7 +20,11 @@ import styles from "./widgetHolder.module.scss";
 
 const EDIT_WIDGET_EMPTY_STATE = -1;
 
-const WidgetHolder = () => {
+type WidgetHolderProps = {
+	searchValue: string;
+}
+
+const WidgetHolder = ({ searchValue }: WidgetHolderProps) => {
 	const [showAddNewWidgetModal, setShowAddNewWidgetModal] = useState(false);
 	const [showNotepadWidgetModal, setShowNotepadWidgetModal] = useState(false);
 	const [widgetsData, setWidgetsData] = useState(getWidgets());
@@ -52,6 +56,11 @@ const WidgetHolder = () => {
 				return null;
 		}
 	};
+
+	const getVisibleWidgets = () => {
+		if (searchValue.length > 0) return widgetsData.filter((w) => w.name?.includes(searchValue) || w.link.includes(searchValue))
+		return widgetsData;
+	}
 
 	const openNotepadWidgetModal = () => {
 		setShowNotepadWidgetModal(true);
@@ -95,18 +104,19 @@ const WidgetHolder = () => {
 			<div className={styles.widgetHolder}>
 				<NotepadWidget onClick={openNotepadWidgetModal} />
 				<DndProvider backend={HTML5Backend}>
-					{widgetsData.map((widgetData, index) => {
+					{getVisibleWidgets().map((widgetData, index) => {
+						const realIndex = widgetsData.indexOf(widgetData);
 						const widgetClass = classNames(styles.widget, {
 							[styles.fixedSizeWidget]: !widgetData?.name,
 						});
 						return (
 							<DraggableWidget
 								key={index}
-								index={index}
+								index={realIndex}
 								onDrop={moveWidget}
 								className={widgetClass}
 							>
-								{getWidgetDOM(widgetData, index)}
+								{getWidgetDOM(widgetData, realIndex)}
 							</DraggableWidget>
 						);
 					})}

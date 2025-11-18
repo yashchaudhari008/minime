@@ -1,11 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FormEvent, useState } from 'react';
+import { Dispatch, FormEvent, SetStateAction } from 'react';
 import styles from './search.module.scss';
 
-const Search = () => {
-  const [searchValue, setSearchValue] = useState("");
+type SearchProps = {
+  searchValue: string;
+  setSearchValue: Dispatch<SetStateAction<string>>;
+}
 
+const Search = ({ searchValue, setSearchValue }: SearchProps) => {
   const onSearch = (e: FormEvent) => {
     e.preventDefault();
 
