@@ -1,30 +1,26 @@
-import { SubmitHandler, useForm } from 'react-hook-form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FormEvent, useState } from 'react';
 import styles from './search.module.scss';
 
-interface Inputs {
-  searchValue: string;
-}
-
 const Search = () => {
-  const { register, handleSubmit, reset } = useForm<Inputs>();
+  const [searchValue, setSearchValue] = useState("");
 
-  const onSearch: SubmitHandler<Inputs> = ({ searchValue }) => {
+  const onSearch = (e: FormEvent) => {
+    e.preventDefault();
+
     let url = "https://www.google.com/search?q=";
     window.open(url + searchValue);
-
-    reset()
   }
 
   return (
-    <form onSubmit={handleSubmit(onSearch)} className={styles.searchForm}>
+    <form onSubmit={onSearch} className={styles.searchForm}>
       <label htmlFor="search"><FontAwesomeIcon icon={faSearch} /></label>
       <input
-        {...register('searchValue', { required: true })}
         type="search"
         placeholder="Search..."
         id='search'
+        onChange={(e) => setSearchValue(e.target.value)}
       />
     </form>
   )
