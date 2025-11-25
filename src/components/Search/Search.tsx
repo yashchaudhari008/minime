@@ -18,13 +18,17 @@ const Search = ({ searchValue, setSearchValue }: SearchProps) => {
 
   return (
     <form onSubmit={onSearch} className={styles.searchForm}>
-      <label htmlFor="search"><FontAwesomeIcon icon={faSearch} /></label>
-      <input
-        type="search"
-        placeholder="Search..."
-        id='search'
-        onChange={(e) => setSearchValue(e.target.value)}
-      />
+      <div>
+        <label htmlFor="search"><FontAwesomeIcon icon={faSearch} /></label>
+        <input
+          type="search"
+          placeholder="Search..."
+          id='search'
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
+      </div>
+      <span>Press ENTER to search on google.</span>
+
     </form>
   )
 }

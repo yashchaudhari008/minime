@@ -2,17 +2,23 @@
 @import "/src/styles/variables.scss";
 
 .searchForm {
-  height: 50px;
   position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
   color: $primaryColor;
+
+  >div {
+    display: flex;
+    align-items: center;
+  }
 
   input {
     @include font-poppins;
 
     width: 600px;
-    height: 100%;
+    height: 50px;
 
     font-size: 18px;
     background: none;
@@ -39,4 +45,9 @@
     left: 20px;
     font-size: 20px;
   }
+
+  span {
+    color: rgba($primaryColor, 0.5);
+  }
+
 }
