@@ -1,14 +1,21 @@
+import { useState } from "react";
 import TopBar from "./components/TopBar/TopBar";
 import WidgetHolder from "./components/WidgetHolder/WidgetHolder";
 import Footer from "./components/Footer/Footer";
 import styles from "./app.module.scss";
+import Divider from "./components/shared/Divider/Divider";
 
 function App() {
+	const [searchValue, setSearchValue] = useState("");
+
 	return (
 		<>
 			<div className={styles.app}>
-				<TopBar />
-				<WidgetHolder />
+				<header className={styles.header}>
+					<TopBar searchValue={searchValue} setSearchValue={setSearchValue} />
+				</header>
+				<Divider />
+				<WidgetHolder searchValue={searchValue} />
 				<Footer />
 			</div>
 		</>

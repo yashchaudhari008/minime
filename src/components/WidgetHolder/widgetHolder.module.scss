@@ -5,15 +5,24 @@
 	padding: 8px;
 	flex: 1;
 	overflow: auto;
+
+	h2 {
+		font-weight: 400;
+		color: rgba($primaryColor, 0.5);
+		margin-left: 20px;
+	}
+
 	.widgetHolder {
 		display: flex;
 		align-items: center;
 		gap: 16px;
 		flex-wrap: wrap;
+
 		.widget {
 			flex: 1;
 			max-width: 350px;
 		}
+
 		.fixedSizeWidget {
 			flex: 0;
 		}
