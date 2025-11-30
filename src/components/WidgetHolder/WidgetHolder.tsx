@@ -108,23 +108,22 @@ const WidgetHolder = ({ searchValue }: WidgetHolderProps) => {
 
 	return (
 		<div className={styles.widgetHolderWrapper}>
-
 			<div className={styles.widgetHolder}>
 				<NotepadWidget onClick={openNotepadWidgetModal} />
 				<DndProvider backend={HTML5Backend}>
 					{getVisibleWidgets().map((widgetData, index) => {
-						const realIndex = widgetsData.indexOf(widgetData);
+						const widgetIndex = widgetsData.indexOf(widgetData);
 						const widgetClass = classNames(styles.widget, {
 							[styles.fixedSizeWidget]: !widgetData?.name,
 						});
 						return (
 							<DraggableWidget
 								key={index}
-								index={realIndex}
+								index={widgetIndex}
 								onDrop={moveWidget}
 								className={widgetClass}
 							>
-								{getWidgetDOM(widgetData, realIndex)}
+								{getWidgetDOM(widgetData, widgetIndex)}
 							</DraggableWidget>
 						);
 					})}
@@ -143,7 +142,6 @@ const WidgetHolder = ({ searchValue }: WidgetHolderProps) => {
 				show={showNotepadWidgetModal}
 				onClose={closeNotepadWidgetModal}
 			/>
-
 		</div>
 	);
 };
