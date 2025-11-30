@@ -3,6 +3,7 @@
 
 .topBar {
 	@include font-poppins;
-	// padding-bottom: 16px;
-	// border-bottom: 4px solid rgba($primaryColor, 0.05);
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
 }

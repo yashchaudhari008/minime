@@ -1,6 +1,6 @@
+import type { Dispatch, FormEvent, SetStateAction } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Dispatch, FormEvent, SetStateAction } from 'react';
 import styles from './search.module.scss';
 
 type SearchProps = {
@@ -18,8 +18,8 @@ const Search = ({ searchValue, setSearchValue }: SearchProps) => {
 
   return (
     <form onSubmit={onSearch} className={styles.searchForm}>
-      <div>
-        <label htmlFor="search"><FontAwesomeIcon icon={faSearch} /></label>
+      <div className={styles.searchBox}>
+        <label htmlFor="search"><FontAwesomeIcon icon={faSearch} className={styles.icon} /></label>
         <input
           type="search"
           placeholder="Search..."
@@ -27,8 +27,7 @@ const Search = ({ searchValue, setSearchValue }: SearchProps) => {
           onChange={(e) => setSearchValue(e.target.value)}
         />
       </div>
-      <span>Press ENTER to search on google.</span>
-
+      <span>Press ENTER to search on google</span>
     </form>
   )
 }
