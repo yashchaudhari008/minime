@@ -17,7 +17,7 @@ const NotepadWidgetModal = ({
 	useEffect(() => {
 		const ls_NotepadContent = getNotepadContent();
 		if (ls_NotepadContent) {
-			setNotepadContent(notepadContent);
+			setNotepadContent(ls_NotepadContent);
 		}
 	}, [])
 
