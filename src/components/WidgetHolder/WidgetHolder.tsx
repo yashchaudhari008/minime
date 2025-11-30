@@ -58,7 +58,14 @@ const WidgetHolder = ({ searchValue }: WidgetHolderProps) => {
 	};
 
 	const getVisibleWidgets = () => {
-		if (searchValue.length > 0) return widgetsData.filter((w) => w.name?.includes(searchValue) || w.link.includes(searchValue))
+		if (searchValue.length > 0) {
+			const searchQuery = searchValue.toLowerCase();
+			return widgetsData.filter((widgetData) => {
+				const name = widgetData.name?.toLowerCase() || "";
+				const link = widgetData.link.toLowerCase();
+				return name.includes(searchQuery) || link.includes(searchQuery);
+			})
+		}
 		return widgetsData;
 	}
 
