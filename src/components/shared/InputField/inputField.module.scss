@@ -1,0 +1,13 @@
+@import "/src/styles/variables.scss";
+
+.input {
+	background: $widgetBackground;
+	color: $inputTextColor;
+	border: 1px solid $widgetBorderColor;
+	border-radius: $widgetBorderRadius;
+	padding: 8px;
+	outline: none;
+	&:focus {
+		border-color: $primaryColor;
+	}
+}

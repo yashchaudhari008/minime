@@ -4,7 +4,7 @@
 .clock {
 	@include font-poppins;
 
-	color: $clockColor;
+	color: $clockTextColor;
 
 	font-size: 64px;
 	font-weight: 400;
@@ -13,7 +13,7 @@
 	padding-inline: 64px;
 	border-radius: 64px;
 
-	background-color: $clockTextColor;
+	background-color: $clockBackground;
 
 	.meridiem {
 		@include font-inter;

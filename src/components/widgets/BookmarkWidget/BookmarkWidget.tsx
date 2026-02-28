@@ -52,7 +52,6 @@ const BookmarkWidget = ({
 					>
 						<FontAwesomeIcon
 							title="Delete"
-							color="#000"
 							size="lg"
 							icon={faClose}
 							className={styles.icon}
@@ -64,7 +63,6 @@ const BookmarkWidget = ({
 					>
 						<FontAwesomeIcon
 							title="Edit"
-							color="#000"
 							icon={faPen}
 							className={styles.icon}
 						/>
