@@ -1,30 +1,29 @@
 // Colors
-$appBackground: #181818;
+$appBackground: #000000;
 $backdrop: rgba(0, 0, 0, 0.5);
 
-$primaryColor: #9c988d;
+$primaryColor: #3e444d;
 $secondaryColor: #1e1e1e;
 
-$appFooterTextColor: $primaryColor;
-$clockColor: $secondaryColor;
-$clockTextColor: $primaryColor;
+$appFooterTextColor: #9298a1;
+$clockTextColor: #9298a1;
+$clockBackground: #1f2328;
 $selectionColor: $primaryColor;
 
 // Modal Colors
-$modalBackgroundColor: $secondaryColor;
-$modalHeaderColor: $primaryColor;
-$modalTextColor: $primaryColor;
+$modalBackground: #1f2328;
+$modalHeaderColor: #9298a1;
+$modalTextColor: #9298a1;
+$inputTextColor: #f0f6fc;
 
-$modalButtonColor: $primaryColor;
-$modalButtonTextColor: $appBackground;
+$modalButtonColor: #3e444d;
+$modalButtonTextColor: #e3e3e3;
 
 // Widget Defaults
-$widgetBackground: $secondaryColor;
-$widgetTextColor: $primaryColor;
-$widgetImageHolderColor: $appBackground;
+$widgetBackground: #0c1117;
+$widgetTextColor: #9298a1;
+$widgetBorderColor: #3e444d;
+$widgetImageBg: #1f2328;
 $widgetBorderRadius: 32px;
 $widgetBorderRadiusOnHover: 12px;
-$widgetHeight: 52px;
-
-$addNewWidgetButtonColor: $secondaryColor;
-$addNewWidgetButtonIconColor: $primaryColor;
+$widgetHeight: 66px;

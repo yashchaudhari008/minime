@@ -4,10 +4,11 @@
 	resize: none;
 	height: 100%;
 	padding: 16px;
-	background-color: $modalTextColor;
+	background-color: $widgetBackground;
+	color: $inputTextColor;
 	border-radius: $widgetBorderRadiusOnHover;
 	border: none;
 	&::placeholder {
-		color: rgba(#000, 0.7);
+		color: $modalTextColor;
 	}
 }

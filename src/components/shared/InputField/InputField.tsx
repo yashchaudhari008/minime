@@ -1,3 +1,5 @@
+import styles from "./inputField.module.scss";
+
 type InputFieldProps = {
 	id: string;
 	type?: string;
@@ -19,6 +21,7 @@ const InputField = ({
 				{label} {required && <span style={{ color: "rgb(187, 30, 30)" }}>*</span>}
 			</label>
 			<input
+				className={styles.input}
 				id={id}
 				name={id}
 				type={type}

@@ -7,10 +7,11 @@
 	color: $widgetTextColor;
 	--widgetPadding: 6px;
 	padding: var(--widgetPadding);
-	height: calc($widgetHeight + (--widgetPadding * 2));
+	height: $widgetHeight;
 	width: 100%;
 
 	border-radius: $widgetBorderRadius;
+	border: 1px solid $widgetBorderColor;
 	background-color: $widgetBackground;
 
 	display: flex;
@@ -20,9 +21,11 @@
 	cursor: pointer;
 
 	&:hover {
+		transition: transform 0.2s ease;
+		transform: scale(1.03);
 		border-radius: $widgetBorderRadiusOnHover;
 		.faviconHolder {
-			border-radius: $widgetBorderRadiusOnHover;
+			border-radius: 6px;
 		}
 	}
 
@@ -32,7 +35,7 @@
 		overflow: hidden;
 		display: grid;
 		place-items: center;
-		background-color: $widgetImageHolderColor;
+		background-color: $widgetImageBg;
 		.favicon {
 			padding: 12px;
 			width: var(--size);

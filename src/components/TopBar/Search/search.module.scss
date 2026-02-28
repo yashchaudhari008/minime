@@ -5,7 +5,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
-	color: $primaryColor;
+	color: $widgetTextColor;
 
 	input[type="search"]::-webkit-search-decoration,
 	input[type="search"]::-webkit-search-cancel-button,
@@ -24,10 +24,10 @@
 			height: 50px;
 
 			font-size: 18px;
-			background: none;
-			color: $primaryColor;
+			background: $widgetBackground;
+			color: $widgetTextColor;
 
-			border: 1px solid rgba($primaryColor, 0.5);
+			border: 1px solid $widgetBorderColor;
 			border-radius: 64px;
 
 			padding-left: 50px;
@@ -37,11 +37,12 @@
 			position: absolute;
 			left: 20px;
 			font-size: 20px;
+			color: $widgetTextColor;
 		}
 	}
 
 	span {
-		color: rgba($primaryColor, 0.5);
+		color: $widgetTextColor;
 		text-align: end;
 		padding-right: 8px;
 	}
