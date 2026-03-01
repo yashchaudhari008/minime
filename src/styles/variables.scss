@@ -1,29 +1,30 @@
 // Colors
-$appBackground: #000000;
+$appBackground: #141415;
 $backdrop: rgba(0, 0, 0, 0.5);
 
 $primaryColor: #3e444d;
-$secondaryColor: #1e1e1e;
 
 $appFooterTextColor: #9298a1;
 $clockTextColor: #9298a1;
-$clockBackground: #1f2328;
+$clockBackground: #222529;
 $selectionColor: $primaryColor;
 
 // Modal Colors
-$modalBackground: #1f2328;
-$modalHeaderColor: #9298a1;
-$modalTextColor: #9298a1;
+// $modalBackground: #1f2328;
+$modalBackground: #141415;
+$modalHeaderColor: #9ca1aa;
+// $modalTextColor: #9298a1;
+$modalTextColor: #9ca1aa;
 $inputTextColor: #f0f6fc;
 
 $modalButtonColor: #3e444d;
 $modalButtonTextColor: #e3e3e3;
 
 // Widget Defaults
-$widgetBackground: #0c1117;
-$widgetTextColor: #9298a1;
-$widgetBorderColor: #3e444d;
-$widgetImageBg: #1f2328;
+$widgetBackground: #191a1c;
+$widgetTextColor: #9ca1aa;
+$widgetBorderColor: #33373d;
+$widgetImageBg: #141415;
 $widgetBorderRadius: 32px;
 $widgetBorderRadiusOnHover: 12px;
 $widgetHeight: 66px;
