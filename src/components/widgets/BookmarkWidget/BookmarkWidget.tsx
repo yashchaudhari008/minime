@@ -22,7 +22,7 @@ const BookmarkWidget = ({
 	const [hoverRef, isHovered] = useHover();
 
 	const onClickHandler = (e: SyntheticEvent<HTMLButtonElement>) => {
-		window.open(link, "_self");
+		window.open(link, "_blank");
 		e.currentTarget.blur();
 	};
 
