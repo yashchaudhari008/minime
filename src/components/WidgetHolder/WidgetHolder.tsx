@@ -22,7 +22,7 @@ const EDIT_WIDGET_EMPTY_STATE = -1;
 
 type WidgetHolderProps = {
 	searchValue: string;
-}
+};
 
 const WidgetHolder = ({ searchValue }: WidgetHolderProps) => {
 	const [showAddNewWidgetModal, setShowAddNewWidgetModal] = useState(false);
@@ -39,7 +39,14 @@ const WidgetHolder = ({ searchValue }: WidgetHolderProps) => {
 		setEditWidgetIndex(index);
 		setShowAddNewWidgetModal(true);
 	};
+	const handleWidgetPin = (index: number) => {
+		const updatedWidgets = widgetsData.map((widget, i) =>
+			i === index ? { ...widget, pinned: !widget.pinned } : widget,
+		);
 
+		setWidgetsData(updatedWidgets);
+		updateWidgetsData(updatedWidgets);
+	};
 	const getWidgetDOM = (widgetData: WidgetData, index: number) => {
 		switch (widgetData.type) {
 			case WidgetType.BookmarkWidget:
@@ -50,6 +57,7 @@ const WidgetHolder = ({ searchValue }: WidgetHolderProps) => {
 						{...widgetData}
 						handleWidgetDelete={handleWidgetDelete}
 						handleWidgetEdit={handleWidgetEdit}
+						handleWidgetPin={handleWidgetPin}
 					/>
 				);
 			default:
@@ -64,18 +72,22 @@ const WidgetHolder = ({ searchValue }: WidgetHolderProps) => {
 				const name = widgetData.name?.toLowerCase() || "";
 				const link = widgetData.link.toLowerCase();
 				return name.includes(searchQuery) || link.includes(searchQuery);
-			})
+			});
 		}
-		return widgetsData;
-	}
+		return [...widgetsData].sort((a, b) => {
+			if (a.pinned && !b.pinned) return -1;
+			if (!a.pinned && b.pinned) return 1;
+			return 0;
+		});
+	};
 
 	const openNotepadWidgetModal = () => {
 		setShowNotepadWidgetModal(true);
-	}
+	};
 
 	const closeNotepadWidgetModal = () => {
 		setShowNotepadWidgetModal(false);
-	}
+	};
 
 	const openAddNewWidgetModal = () => {
 		setShowAddNewWidgetModal(true);
@@ -88,7 +100,7 @@ const WidgetHolder = ({ searchValue }: WidgetHolderProps) => {
 
 	const addEditHandler = (
 		widgetIndex: number = EDIT_WIDGET_EMPTY_STATE,
-		widgetData: WidgetData
+		widgetData: WidgetData,
 	) => {
 		if (widgetIndex === EDIT_WIDGET_EMPTY_STATE) {
 			setWidgetsData(addWidget(widgetData));
