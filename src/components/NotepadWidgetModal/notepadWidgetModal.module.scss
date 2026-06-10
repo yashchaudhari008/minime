@@ -1,6 +1,8 @@
+@use '../../styles/mixins.scss';
 @import "/src/styles/variables.scss";
 
 .notes {
+	@include mixins.universal-scrollbar($scrollbarThumbColor);
 	resize: none;
 	height: 100%;
 	padding: 16px;

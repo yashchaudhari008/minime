@@ -23,3 +23,43 @@
 	}
   }
   
+@mixin universal-scrollbar($thumb-color, $width: 0.5rem) {
+	
+  scrollbar-gutter: stable;
+
+  @supports not selector(::-webkit-scrollbar){
+    scrollbar-color: $thumb-color transparent;
+  }
+  // scrollbar-width: thin;
+
+  @supports selector(::-webkit-scrollbar) {
+    &::-webkit-scrollbar {
+      width: $width;
+      height: auto;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $thumb-color;
+      border-radius: calc($width / 2);
+      border: none;
+
+      &:hover {
+        background-color: darken($thumb-color, 12%);
+      }
+
+      &:active {
+        background-color: darken($thumb-color, 20%);
+      }
+    }
+
+    &::-webkit-scrollbar-button {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+  }
+}
