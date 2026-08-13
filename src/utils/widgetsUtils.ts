@@ -6,6 +6,7 @@ export type WidgetData = {
 	type: WidgetType;
 	name?: string;
 	link: string;
+	pinned?: boolean;
 };
 
 const ls_widgetsData_key = "minime/widgetsData";
